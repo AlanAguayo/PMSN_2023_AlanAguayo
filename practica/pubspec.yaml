@@ -42,6 +42,7 @@ dependencies:
   path_provider: ^2.0.12
   email_validator: ^2.1.17
   image_picker: ^0.8.6+3
+  flutter_svg: ^2.0.2
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:practicauno/widgets/loading_modal_widget.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
+import '../responsive.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -97,55 +99,51 @@ class _LoginScreenState extends State<LoginScreen> {
                     image: AssetImage("assets/Background.jpg"),
                     fit: BoxFit.cover,
                     opacity: 0.5)),
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Stack(
-                alignment: Alignment.topCenter,
+            child: Responsive(
+              mobile: MobileLoginScreen(
+                  spaceHorizontal: spaceHorizontal,
+                  btnRegister: btnRegister,
+                  txtEmail: txtEmail,
+                  txtPass: txtPass,
+                  btnForgot: btnForgot,
+                  btnLogin: btnLogin,
+                  btnGoogle: btnGoogle,
+                  btnFacebook: btnFacebook),
+              desktop: Row(
                 children: [
-                  Column(
+                  Expanded(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "Iniciar Sesion",
-                          style: TextStyle(
-                            fontSize: 30,
-                            color: Colors.white,
-                          ),
+                        const SizedBox(
+                          width: 450,
+                          child: Center(child: TopLoginImage()),
                         ),
-                        spaceHorizontal,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text("No tienes una cuenta?",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                )),
-                            btnRegister,
-                          ],
+                        SizedBox(
+                            child: LoginScreenTopWidget(
+                                spaceHorizontal: spaceHorizontal,
+                                btnRegister: btnRegister))
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 450,
+                          child: LoginForm(
+                              txtEmail: txtEmail,
+                              spaceHorizontal: spaceHorizontal,
+                              txtPass: txtPass,
+                              btnForgot: btnForgot,
+                              btnLogin: btnLogin,
+                              btnGoogle: btnGoogle,
+                              btnFacebook: btnFacebook),
                         ),
-                        txtEmail,
-                        spaceHorizontal,
-                        txtPass,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            btnForgot,
-                          ],
-                        ),
-                        btnLogin,
-                        spaceHorizontal,
-                        const Text(
-                          "or",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.white,
-                          ),
-                        ),
-                        spaceHorizontal,
-                        btnGoogle,
-                        spaceHorizontal,
-                        btnFacebook,
-                      ]),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -153,6 +151,156 @@ class _LoginScreenState extends State<LoginScreen> {
           isLoading ? const LoadingModalWidget() : Container()
         ],
       ),
+    );
+  }
+}
+
+class MobileLoginScreen extends StatelessWidget {
+  const MobileLoginScreen({
+    super.key,
+    required this.spaceHorizontal,
+    required this.btnRegister,
+    required this.txtEmail,
+    required this.txtPass,
+    required this.btnForgot,
+    required this.btnLogin,
+    required this.btnGoogle,
+    required this.btnFacebook,
+  });
+
+  final SizedBox spaceHorizontal;
+  final TextButton btnRegister;
+  final TextFormField txtEmail;
+  final TextFormField txtPass;
+  final TextButton btnForgot;
+  final SocialLoginButton btnLogin;
+  final SocialLoginButton btnGoogle;
+  final SocialLoginButton btnFacebook;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const SizedBox(height: 100, child: TopLoginImage()),
+            LoginScreenTopWidget(
+                spaceHorizontal: spaceHorizontal, btnRegister: btnRegister),
+            LoginForm(
+                txtEmail: txtEmail,
+                spaceHorizontal: spaceHorizontal,
+                txtPass: txtPass,
+                btnForgot: btnForgot,
+                btnLogin: btnLogin,
+                btnGoogle: btnGoogle,
+                btnFacebook: btnFacebook),
+          ]),
+        ],
+      ),
+    );
+  }
+}
+
+class LoginForm extends StatelessWidget {
+  const LoginForm({
+    super.key,
+    required this.txtEmail,
+    required this.spaceHorizontal,
+    required this.txtPass,
+    required this.btnForgot,
+    required this.btnLogin,
+    required this.btnGoogle,
+    required this.btnFacebook,
+  });
+
+  final TextFormField txtEmail;
+  final SizedBox spaceHorizontal;
+  final TextFormField txtPass;
+  final TextButton btnForgot;
+  final SocialLoginButton btnLogin;
+  final SocialLoginButton btnGoogle;
+  final SocialLoginButton btnFacebook;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        txtEmail,
+        spaceHorizontal,
+        txtPass,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            btnForgot,
+          ],
+        ),
+        btnLogin,
+        spaceHorizontal,
+        const Text(
+          "or",
+          style: TextStyle(
+            fontSize: 15,
+            color: Colors.white,
+          ),
+        ),
+        spaceHorizontal,
+        btnGoogle,
+        spaceHorizontal,
+        btnFacebook,
+      ],
+    );
+  }
+}
+
+class LoginScreenTopWidget extends StatelessWidget {
+  const LoginScreenTopWidget({
+    super.key,
+    required this.spaceHorizontal,
+    required this.btnRegister,
+  });
+
+  final SizedBox spaceHorizontal;
+  final TextButton btnRegister;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Text(
+          "Iniciar Sesion",
+          style: TextStyle(
+            fontSize: 30,
+            color: Colors.white,
+          ),
+        ),
+        spaceHorizontal,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("No tienes una cuenta?",
+                style: TextStyle(
+                  color: Colors.white,
+                )),
+            btnRegister,
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class TopLoginImage extends StatelessWidget {
+  const TopLoginImage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      'assets/Logo.png',
+      height: 250,
     );
   }
 }
