@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practicauno/database/database_helper.dart';
+import 'package:practicauno/widgets/item_post_widget.dart';
 
 import '../models/post_model.dart';
 
@@ -29,7 +30,7 @@ class _ListPostScreenState extends State<ListPostScreen> {
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               var objPostModel = snapshot.data![index];
-              return widget;
+              return ItemPostWidget(postModel: objPostModel);
             },
           );
         } else if (snapshot.hasError) {

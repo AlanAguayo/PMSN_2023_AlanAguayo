@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practicauno/widgets/loading_modal_widget.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
-
 import '../responsive.dart';
 
 class LoginScreen extends StatefulWidget {
