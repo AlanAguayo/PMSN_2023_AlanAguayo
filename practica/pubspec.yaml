@@ -43,6 +43,9 @@ dependencies:
   email_validator: ^2.1.17
   image_picker: ^0.8.6+3
   flutter_svg: ^2.0.2
+  concentric_transition: ^1.0.3
+  lottie: ^2.2.0
+  shared_preferences: ^2.0.18
 
 dev_dependencies:
   flutter_test:

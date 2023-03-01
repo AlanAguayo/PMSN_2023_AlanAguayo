@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
+import '../responsive.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -207,70 +209,176 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   image: AssetImage("assets/Background.jpg"),
                   fit: BoxFit.cover,
                   opacity: 0.5)),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Stack(
-              alignment: Alignment.topCenter,
+          child: Responsive(
+            mobile: MobileLoginScreen(
+                btnImage: btnImage,
+                spaceHorizontal: spaceHorizontal,
+                txtUsername: txtUsername,
+                txtEmail: txtEmail,
+                txtPass: txtPass,
+                btnSingUp: btnSingUp),
+            desktop: Row(
               children: [
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  btnImage,
-                  spaceHorizontal,
-                  const Row(
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      btnImage,
+                      const Text(
                         "Registro",
                         style: TextStyle(
                             fontSize: 35,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
+                      spaceHorizontal,
+                      const Text(
+                        "Crea una cuenta para comenzar conocer nuevas personas!!",
+                        style: TextStyle(
+                          fontSize: 17,
+                          color: Colors.white,
+                        ),
+                      ),
                     ],
                   ),
-                  spaceHorizontal,
-                  const Text(
-                    "Crea una cuenta para comenzar conocer nuevas personas!!",
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Colors.white,
-                    ),
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 450,
+                        child: FormRegister(
+                            txtUsername: txtUsername,
+                            spaceHorizontal: spaceHorizontal,
+                            txtEmail: txtEmail,
+                            txtPass: txtPass,
+                            btnSingUp: btnSingUp),
+                      ),
+                    ],
                   ),
-                  spaceHorizontal,
-                  spaceHorizontal,
-                  txtUsername,
-                  spaceHorizontal,
-                  txtEmail,
-                  spaceHorizontal,
-                  txtPass,
-                  spaceHorizontal,
-                  spaceHorizontal,
-                  btnSingUp,
-                  spaceHorizontal,
-                  MaterialButton(
-                    elevation: 0,
-                    height: 50,
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/login");
-                    },
-                    textColor: Colors.black,
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "Ya tengo una cuenta",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 165, 198, 255),
-                            fontSize: 20,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ]),
+                ),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class MobileLoginScreen extends StatelessWidget {
+  const MobileLoginScreen({
+    super.key,
+    required this.btnImage,
+    required this.spaceHorizontal,
+    required this.txtUsername,
+    required this.txtEmail,
+    required this.txtPass,
+    required this.btnSingUp,
+  });
+
+  final Center btnImage;
+  final SizedBox spaceHorizontal;
+  final TextFormField txtUsername;
+  final TextFormField txtEmail;
+  final TextFormField txtPass;
+  final SocialLoginButton btnSingUp;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            btnImage,
+            spaceHorizontal,
+            const Row(
+              children: [
+                Text(
+                  "Registro",
+                  style: TextStyle(
+                      fontSize: 35,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            spaceHorizontal,
+            const Text(
+              "Crea una cuenta para comenzar conocer nuevas personas!!",
+              style: TextStyle(
+                fontSize: 17,
+                color: Colors.white,
+              ),
+            ),
+            spaceHorizontal,
+            spaceHorizontal,
+            FormRegister(
+                txtUsername: txtUsername,
+                spaceHorizontal: spaceHorizontal,
+                txtEmail: txtEmail,
+                txtPass: txtPass,
+                btnSingUp: btnSingUp),
+          ]),
+        ],
+      ),
+    );
+  }
+}
+
+class FormRegister extends StatelessWidget {
+  const FormRegister({
+    super.key,
+    required this.txtUsername,
+    required this.spaceHorizontal,
+    required this.txtEmail,
+    required this.txtPass,
+    required this.btnSingUp,
+  });
+
+  final TextFormField txtUsername;
+  final SizedBox spaceHorizontal;
+  final TextFormField txtEmail;
+  final TextFormField txtPass;
+  final SocialLoginButton btnSingUp;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        txtUsername,
+        spaceHorizontal,
+        txtEmail,
+        spaceHorizontal,
+        txtPass,
+        spaceHorizontal,
+        spaceHorizontal,
+        btnSingUp,
+        spaceHorizontal,
+        MaterialButton(
+          elevation: 0,
+          height: 50,
+          onPressed: () {
+            Navigator.pushNamed(context, "/login");
+          },
+          textColor: Colors.black,
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Ya tengo una cuenta",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 165, 198, 255),
+                  fontSize: 20,
+                ),
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

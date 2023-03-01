@@ -6,18 +6,18 @@ class StylesApp {
   static ThemeData darkTheme(BuildContext context) {
     final ThemeData theme = ThemeData.dark();
     return theme.copyWith(
-      colorScheme: Theme.of(context)
-          .colorScheme
-          .copyWith(primary: const Color.fromARGB(255, 81, 82, 80)),
+      colorScheme: Theme.of(context).colorScheme.copyWith(
+            primary: const Color.fromARGB(255, 81, 82, 80),
+          ),
     );
   }
 
   static ThemeData lightTheme(BuildContext context) {
     final ThemeData theme = ThemeData.light();
     return theme.copyWith(
-      colorScheme: Theme.of(context)
-          .colorScheme
-          .copyWith(primary: const Color.fromARGB(255, 8, 103, 38)),
+      colorScheme: Theme.of(context).colorScheme.copyWith(
+            primary: const Color.fromARGB(255, 8, 103, 38),
+          ),
     );
   }
 
