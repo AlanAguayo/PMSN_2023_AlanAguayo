@@ -3,20 +3,27 @@ import 'package:practicauno/provider/theme_provider.dart';
 import 'package:practicauno/routes.dart';
 import 'package:practicauno/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  final theme = sharedPreferences.getString('theme') ?? 'light';
+
+  runApp(MyApp(theme: theme));
 }
-//void main(runApp(const MyApp()));
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String theme;
+  const MyApp({super.key, required this.theme});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ThemeProvider(context),
-      child: const PMSNApp(),
+      create: (context) => ThemeProvider(theme),
+      builder: (context, snapshot) {
+        return const PMSNApp();
+      },
     );
   }
 }
@@ -26,9 +33,10 @@ class PMSNApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeProvider theme = Provider.of<ThemeProvider>(context);
+    final settings = Provider.of<ThemeProvider>(context);
     return MaterialApp(
-      theme: theme.getthemeData(),
+      debugShowCheckedModeBanner: false,
+      theme: settings.currentTheme,
       routes: getApplicationRoutes(),
       home: WelcomeScreen(),
     );

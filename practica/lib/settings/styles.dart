@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 
 class StylesApp {
-  static Color appPrimaryColor = const Color.fromARGB(255, 6, 126, 122);
-
-  static ThemeData darkTheme(BuildContext context) {
-    final ThemeData theme = ThemeData.dark();
-    return theme.copyWith(
-      colorScheme: Theme.of(context).colorScheme.copyWith(
-            primary: const Color.fromARGB(255, 81, 82, 80),
-          ),
-    );
+  static ThemeData darkTheme() {
+    return ThemeData.dark();
   }
 
-  static ThemeData lightTheme(BuildContext context) {
-    final ThemeData theme = ThemeData.light();
-    return theme.copyWith(
-      colorScheme: Theme.of(context).colorScheme.copyWith(
-            primary: const Color.fromARGB(255, 8, 103, 38),
-          ),
-    );
+  static ThemeData lightTheme() {
+    return ThemeData.light();
   }
 
-  /*static darkTheme() {
-    final ThemeData theme = ThemeData.dark();
-    return theme;
-  }*/
+  static ThemeData obscureTheme() {
+    return ThemeData.from(
+        colorScheme: const ColorScheme(
+            brightness: Brightness.dark,
+            primary: Color.fromARGB(255, 8, 103, 38),
+            onPrimary: Color.fromARGB(255, 8, 103, 38),
+            secondary: Color.fromARGB(255, 8, 103, 38),
+            onSecondary: Color.fromARGB(255, 8, 103, 38),
+            error: Color.fromARGB(255, 8, 103, 38),
+            onError: Color.fromARGB(255, 8, 103, 38),
+            background: Color.fromARGB(255, 8, 103, 38),
+            onBackground: Color.fromARGB(255, 8, 103, 38),
+            surface: Color.fromARGB(255, 8, 103, 38),
+            onSurface: Color.fromARGB(255, 8, 103, 38)));
+  }
 }

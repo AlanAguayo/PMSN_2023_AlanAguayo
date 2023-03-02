@@ -1,12 +1,9 @@
-import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:practicauno/screens/list_post_screen.dart';
-import 'package:practicauno/settings/styles.dart';
 import 'package:practicauno/widgets/modal_add_post.dart';
 import 'package:provider/provider.dart';
 import '../provider/theme_provider.dart';
 
-// ignore: must_be_immutable
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
@@ -15,13 +12,13 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  bool isDarkThemeEnable = true;
+  void _toggleTheme(theme) {
+    final settings = Provider.of<ThemeProvider>(context, listen: false);
+    settings.toggleTheme(theme);
+  }
 
   @override
   Widget build(BuildContext context) {
-    ThemeProvider theme = Provider.of<ThemeProvider>(context);
-    //theme.setthemeData(StylesApp.darkTheme(context));
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("TecBook :)"),
@@ -36,18 +33,50 @@ class _DashboardScreenState extends State<DashboardScreen> {
             accountName: Text('Alan Aguayo'),
             accountEmail: Text('19030034@itcelaya.edu.mx'),
           ),
-          DayNightSwitcher(
-            isDarkModeEnabled: isDarkThemeEnable,
-            onStateChanged: (isDarkModeEnabled) {
-              isDarkModeEnabled
-                  ? theme.setthemeData(StylesApp.darkTheme(context))
-                  : theme.setthemeData(StylesApp.lightTheme(context));
-
-              isDarkThemeEnable = isDarkModeEnabled;
-
-              setState(() {});
-            },
-          )
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MaterialButton(
+                  color: Colors.white,
+                  onPressed: () {
+                    _toggleTheme('light');
+                  },
+                  child: const Text(
+                    'Light',
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                MaterialButton(
+                  onPressed: () {
+                    _toggleTheme('dark');
+                  },
+                  color: Colors.grey,
+                  child: const Text(
+                    'Dark',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                MaterialButton(
+                  onPressed: () {
+                    _toggleTheme('obscure');
+                  },
+                  color: const Color.fromARGB(255, 41, 0, 153),
+                  child: const Text(
+                    'Obscure',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ]),
       ),
       floatingActionButton: FloatingActionButton.extended(

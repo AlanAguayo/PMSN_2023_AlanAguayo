@@ -14,4 +14,5 @@ com.example.practicauno.app-merged_res-12 C:\Users\agasa\Downloads\Moviles\Movil
 com.example.practicauno.app-packaged_res-13 C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\flutter_plugin_android_lifecycle\intermediates\packaged_res\debug
 com.example.practicauno.app-packaged_res-14 C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\image_picker_android\intermediates\packaged_res\debug
 com.example.practicauno.app-packaged_res-15 C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\path_provider_android\intermediates\packaged_res\debug
-com.example.practicauno.app-packaged_res-16 C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\sqflite\intermediates\packaged_res\debug
+com.example.practicauno.app-packaged_res-16 C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\shared_preferences_android\intermediates\packaged_res\debug
+com.example.practicauno.app-packaged_res-17 C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\sqflite\intermediates\packaged_res\debug

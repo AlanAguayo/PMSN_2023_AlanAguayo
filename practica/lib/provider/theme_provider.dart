@@ -1,16 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:practicauno/settings/styles.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeProvider with ChangeNotifier {
-  ThemeProvider(BuildContext context) {
-    _themeData = StylesApp.darkTheme(context);
+  ThemeData _currentTheme = ThemeData.light();
+  ThemeData get currentTheme => _currentTheme;
+
+  ThemeProvider(String theme) {
+    switch (theme) {
+      case 'dark':
+        _currentTheme = ThemeData.dark();
+        break;
+      case 'light':
+        _currentTheme = ThemeData.light();
+        break;
+      case 'obscure':
+        _currentTheme = StylesApp.obscureTheme();
+        break;
+      default:
+        _currentTheme = StylesApp.obscureTheme();
+        break;
+    }
   }
 
-  ThemeData? _themeData;
-  getthemeData() => _themeData;
-  setthemeData(ThemeData theme) {
-    _themeData = theme;
+  void toggleTheme(theme) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    /*if (_currentTheme == StylesApp.darkTheme()) {
+      _currentTheme = ThemeData.dark();
+      sharedPreferences.setString('theme', 'dark');
+    } else {
+      if (_currentTheme == StylesApp.lightTheme()) {
+        _currentTheme = StylesApp.lightTheme();
+        sharedPreferences.setString('theme', 'obscure');
+      }
+    }*/
+    switch (theme) {
+      case 'dark':
+        _currentTheme = ThemeData.dark();
+        sharedPreferences.setString('theme', 'dark');
+        break;
+      case 'light':
+        _currentTheme = ThemeData.light();
+        sharedPreferences.setString('theme', 'light');
+        break;
+      case 'obscure':
+        _currentTheme = StylesApp.obscureTheme();
+        sharedPreferences.setString('theme', 'obscure');
+        break;
+      default:
+        _currentTheme = StylesApp.darkTheme();
+        sharedPreferences.setString('theme', 'dark');
+        break;
+    }
     notifyListeners();
   }
 }
-//button groups
