@@ -2,7 +2,6 @@ import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:practicauno/card_welcome.dart';
-
 import '../responsive.dart';
 
 class WelcomeScreen extends StatelessWidget {

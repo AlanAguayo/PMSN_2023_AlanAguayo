@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:practicauno/provider/flags_provider.dart';
 import 'package:practicauno/screens/list_post_screen.dart';
 import 'package:practicauno/widgets/modal_add_post.dart';
 import 'package:provider/provider.dart';
 import '../provider/theme_provider.dart';
+import '../widgets/future_modal.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -19,6 +21,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider theme = Provider.of<ThemeProvider>(context);
+    FlagsProvider flags = Provider.of<FlagsProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("TecBook :)"),
@@ -81,34 +86,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          _openCustomDialog();
+          openCustomDialog(context, null);
         },
         label: const Text('Post it!'),
         icon: const Icon(Icons.add_comment),
       ),
-      //body: const ListPostScreen(),
-    );
-  }
-
-  _openCustomDialog() {
-    return showGeneralDialog(
-      context: context,
-      barrierColor: Colors.black.withOpacity(0.5),
-      transitionBuilder: (context, animation, secondaryAnimation, child) {
-        return Transform.scale(
-          scale: animation.value,
-          child: Opacity(
-            opacity: animation.value,
-            child: const ModalAddPost(),
-          ),
-        );
-      },
-      transitionDuration: const Duration(milliseconds: 200),
-      barrierDismissible: true,
-      barrierLabel: '',
-      pageBuilder: (context, animation, secondaryAnimation) {
-        return Container();
-      },
+      body: flags.getUpdatePosts() == true
+          ? const ListPostScreen()
+          : const ListPostScreen(),
     );
   }
 }

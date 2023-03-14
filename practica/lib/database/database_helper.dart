@@ -19,6 +19,7 @@ class DatabaseHelper {
   Future<Database> _initDatabase() async {
     Directory folder = await getApplicationDocumentsDirectory();
     String pathDB = join(folder.path, nombreBD);
+    //await deleteDatabase(pathDB); //Usar en caso de que no se pueda acceder a la bd
     return await openDatabase(
       pathDB,
       version: versionBD,
@@ -28,7 +29,7 @@ class DatabaseHelper {
 
   _createTable(Database db, int version) {
     String query =
-        "CREATE TABLE tblPost(idPost INTEGER PRIMARY KEY, dscPost VARCHAR(200), datePost DATE,);";
+        "CREATE TABLE tblPost(idPost INTEGER PRIMARY KEY, dscPost VARCHAR(200), datePost DATE)";
     db.execute(query);
   }
 
@@ -50,7 +51,7 @@ class DatabaseHelper {
 
   Future<List<PostModel>> GETALLPOST() async {
     var conexion = await database;
-    var result = await conexion.query('tblPost');
+    var result = await conexion.query('tblPost', orderBy: 'idPost DESC');
     return result.map((post) => PostModel.fromMap(post)).toList();
   }
 }

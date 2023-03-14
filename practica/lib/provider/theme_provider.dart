@@ -25,15 +25,6 @@ class ThemeProvider with ChangeNotifier {
 
   void toggleTheme(theme) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    /*if (_currentTheme == StylesApp.darkTheme()) {
-      _currentTheme = ThemeData.dark();
-      sharedPreferences.setString('theme', 'dark');
-    } else {
-      if (_currentTheme == StylesApp.lightTheme()) {
-        _currentTheme = StylesApp.lightTheme();
-        sharedPreferences.setString('theme', 'obscure');
-      }
-    }*/
     switch (theme) {
       case 'dark':
         _currentTheme = ThemeData.dark();

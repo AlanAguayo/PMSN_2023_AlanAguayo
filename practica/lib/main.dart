@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practicauno/provider/flags_provider.dart';
 import 'package:practicauno/provider/theme_provider.dart';
 import 'package:practicauno/routes.dart';
 import 'package:practicauno/screens/welcome_screen.dart';
@@ -19,11 +20,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ThemeProvider(theme),
-      builder: (context, snapshot) {
-        return const PMSNApp();
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemeProvider(theme)),
+        ChangeNotifierProvider<FlagsProvider>(
+            create: (context) => FlagsProvider()),
+      ],
+      child: ChangeNotifierProvider(
+        create: (context) => ThemeProvider(theme),
+        builder: (context, snapshot) {
+          return const PMSNApp();
+        },
+      ),
     );
   }
 }
