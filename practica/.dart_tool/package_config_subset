@@ -102,6 +102,10 @@ image_picker_platform_interface
 2.12
 file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_platform_interface-2.6.3/
 file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_platform_interface-2.6.3/lib/
+intl
+2.12
+file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.18.0/
+file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.18.0/lib/
 js
 2.19
 file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.7/
@@ -214,6 +218,10 @@ shared_preferences_windows
 2.12
 file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_windows-2.1.4/
 file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_windows-2.1.4/lib/
+simple_gesture_detector
+2.12
+file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/simple_gesture_detector-0.2.0/
+file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/simple_gesture_detector-0.2.0/lib/
 social_login_buttons
 2.12
 file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/social_login_buttons-1.0.7/
@@ -246,6 +254,10 @@ synchronized
 2.18
 file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/synchronized-3.0.1/
 file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/synchronized-3.0.1/lib/
+table_calendar
+2.12
+file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/table_calendar-3.0.9/
+file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/table_calendar-3.0.9/lib/
 term_glyph
 2.12
 file:///C:/Users/agasa/AppData/Local/Pub/Cache/hosted/pub.dev/term_glyph-1.2.1/

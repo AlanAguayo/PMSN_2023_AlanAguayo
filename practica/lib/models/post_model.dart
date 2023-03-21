@@ -2,6 +2,10 @@ class PostModel {
   int? idPost;
   String? dscPost;
   String? datePost;
+  int? idEvento;
+  String? dscEvento;
+  String? dateEvento;
+  int? completado;
 
   PostModel({this.idPost, this.dscPost, this.datePost});
 

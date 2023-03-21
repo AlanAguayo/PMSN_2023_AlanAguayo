@@ -56,21 +56,26 @@ class _ModalAddPostState extends State<ModalAddPost> {
                       final snackBar = SnackBar(content: Text(msg));
                       Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      flags.setUpdatePost();
+                      flags.setUpdate();
                     });
                   } else {
-                    database!.ACTUALIZAR("tblPost", {
-                      'idPost': widget.postModel!.idPost,
-                      'dscPost': txtDescPost.text,
-                      'datePost': DateTime.now().toString(),
-                    }).then((value) {
+                    database!
+                        .ACTUALIZAR(
+                            "tblPost",
+                            {
+                              'idPost': widget.postModel!.idPost,
+                              'dscPost': txtDescPost.text,
+                              'datePost': DateTime.now().toString(),
+                            },
+                            'idPost')
+                        .then((value) {
                       var msg = value > 0
                           ? 'Publicacion editada!'
                           : 'Ocurrio un error!';
                       final snackBar = SnackBar(content: Text(msg));
                       Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      flags.setUpdatePost();
+                      flags.setUpdate();
                     });
                   }
                 },

@@ -81,7 +81,7 @@ class _ItemPostWidgetState extends State<ItemPostWidget> {
                 _showDeleteModal(context);
                 break;
               case 1:
-                openCustomDialog(context, widget.postModel);
+                openCustomDialog(context, widget.postModel, null, 'Post');
                 break;
             }
           },
@@ -142,9 +142,10 @@ class _ItemPostWidgetState extends State<ItemPostWidget> {
           actions: [
             TextButton(
               onPressed: () {
-                _database.ELIMINAR('tblPost', widget.postModel!.idPost!);
+                _database.ELIMINAR(
+                    'tblPost', widget.postModel!.idPost!, 'idPost');
                 Navigator.pop(context);
-                flags!.setUpdatePost();
+                flags!.setUpdate();
               },
               child: const Text('Aceptar'),
             ),
@@ -152,33 +153,6 @@ class _ItemPostWidgetState extends State<ItemPostWidget> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancelar'),
-            )
-          ],
-        );
-      },
-    );
-  }
-
-  _showUpdateModal(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          content: const Text(
-            'Editar',
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                _database.ELIMINAR('tblPost', widget.postModel!.idPost!);
-                Navigator.pop(context);
-                flags!.setUpdatePost();
-              },
-              child: const Text('Aceptar'),
-            ),
-            TextButton(
-              onPressed: () {},
               child: const Text('Cancelar'),
             )
           ],

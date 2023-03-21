@@ -6,6 +6,20 @@ class ThemeProvider with ChangeNotifier {
   ThemeData _currentTheme = ThemeData.light();
   ThemeData get currentTheme => _currentTheme;
 
+  String getTheme() {
+    String theme = "light";
+    if (_currentTheme == ThemeData.dark()) {
+      theme = 'dark';
+    }
+    if (_currentTheme == ThemeData.light()) {
+      theme = 'light';
+    }
+    if (_currentTheme == StylesApp.obscureTheme()) {
+      theme = 'obscure';
+    }
+    return theme;
+  }
+
   ThemeProvider(String theme) {
     switch (theme) {
       case 'dark':

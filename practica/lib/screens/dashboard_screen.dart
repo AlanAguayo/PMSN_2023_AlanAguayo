@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practicauno/provider/flags_provider.dart';
 import 'package:practicauno/screens/list_post_screen.dart';
-import 'package:practicauno/widgets/modal_add_post.dart';
 import 'package:provider/provider.dart';
 import '../provider/theme_provider.dart';
 import '../widgets/future_modal.dart';
@@ -38,60 +37,54 @@ class _DashboardScreenState extends State<DashboardScreen> {
             accountName: Text('Alan Aguayo'),
             accountEmail: Text('19030034@itcelaya.edu.mx'),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                MaterialButton(
-                  color: Colors.white,
-                  onPressed: () {
-                    _toggleTheme('light');
-                  },
-                  child: const Text(
-                    'Light',
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    _toggleTheme('dark');
-                  },
-                  color: Colors.grey,
-                  child: const Text(
-                    'Dark',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    _toggleTheme('obscure');
-                  },
-                  color: const Color.fromARGB(255, 41, 0, 153),
-                  child: const Text(
-                    'Obscure',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
+          ListTile(
+            onTap: () {
+              Navigator.pushNamed(context, '/event');
+            },
+            horizontalTitleGap: 0.0,
+            leading: const Icon(Icons.calendar_month),
+            title: const Text(
+              'Eventos',
+              style: TextStyle(fontSize: 16),
             ),
           ),
+          DropdownButtonFormField<String>(
+              isExpanded: true,
+              value: theme.getTheme(),
+              decoration: const InputDecoration(
+                labelText: 'Tema',
+                prefixIcon: Icon(Icons.color_lens),
+              ),
+              items: <String>['light', 'dark', 'obscure'].map((i) {
+                return DropdownMenuItem(
+                    value: i,
+                    child: Text(
+                      i,
+                    ));
+              }).toList(),
+              hint: const Text('Tema'),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              onChanged: (value) {
+                if (value == 'light') {
+                  _toggleTheme('light');
+                }
+                if (value == 'dark') {
+                  _toggleTheme('dark');
+                }
+                if (value == 'obscure') {
+                  _toggleTheme('obscure');
+                }
+              }),
         ]),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          openCustomDialog(context, null);
+          openCustomDialog(context, null, null, 'Post');
         },
         label: const Text('Post it!'),
         icon: const Icon(Icons.add_comment),
       ),
-      body: flags.getUpdatePosts() == true
+      body: flags.getUpdate() == true
           ? const ListPostScreen()
           : const ListPostScreen(),
     );
