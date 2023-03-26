@@ -47,6 +47,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
               'Eventos',
               style: TextStyle(fontSize: 16),
             ),
+            trailing: const Icon(Icons.chevron_right),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.pushNamed(context, '/popular');
+            },
+            horizontalTitleGap: 0.0,
+            leading: const Icon(Icons.movie),
+            title: const Text(
+              'API Movies',
+              style: TextStyle(fontSize: 16),
+            ),
+            trailing: const Icon(Icons.chevron_right),
           ),
           DropdownButtonFormField<String>(
               isExpanded: true,

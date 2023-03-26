@@ -85,7 +85,6 @@ class _EventScreenState extends State<EventScreen> {
           TextButton(
             child: const Text('Agregar'),
             onPressed: () {
-/*
               if (descController.text.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -125,7 +124,7 @@ class _EventScreenState extends State<EventScreen> {
                 descController.clear();
                 Navigator.pop(context);
                 return;
-              }*/
+              }
             },
           ),
         ],
