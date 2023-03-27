@@ -7,8 +7,9 @@ import '../models/event_model.dart';
 import '../provider/flags_provider.dart';
 
 class ModalAddEvent extends StatefulWidget {
-  ModalAddEvent({super.key, this.eventModel});
+  ModalAddEvent({super.key, this.eventModel, this.date});
 
+  final DateTime? date;
   final EventModel? eventModel;
 
   @override
@@ -19,7 +20,7 @@ class _ModalAddEventState extends State<ModalAddEvent> {
   DatabaseHelper? database;
   TextEditingController txtDescEvent = TextEditingController();
   DateTime selectedDate = DateTime.now();
-
+  bool isCompleted = false;
   String selectedDateFormat = "";
 
   @override
@@ -28,12 +29,27 @@ class _ModalAddEventState extends State<ModalAddEvent> {
     database = DatabaseHelper();
     txtDescEvent.text =
         widget.eventModel != null ? widget.eventModel!.dscEvento! : "";
-    selectedDateFormat = widget.eventModel != null
-        ? widget.eventModel!.dateEvento!
-        : DateFormat('yyyy-MM-dd').format(DateTime.now());
-    selectedDate = widget.eventModel != null
-        ? DateTime.parse(widget.eventModel!.dateEvento!)
-        : DateTime.now();
+
+    if (widget.eventModel != null) {
+      selectedDateFormat = widget.eventModel!.dateEvento!;
+      selectedDate = DateTime.parse(widget.eventModel!.dateEvento!);
+    } else {
+      if (widget.date != null) {
+        selectedDate = widget.date!;
+        selectedDateFormat = DateFormat('yyyy-MM-dd').format(widget.date!);
+      } else {
+        selectedDate = DateTime.now();
+        selectedDateFormat = DateFormat('yyyy-MM-dd').format(DateTime.now());
+      }
+    }
+
+    if (widget.eventModel != null) {
+      if (widget.eventModel!.completado == 1) {
+        isCompleted = true;
+      } else {
+        isCompleted = false;
+      }
+    }
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -60,7 +76,7 @@ class _ModalAddEventState extends State<ModalAddEvent> {
             ? const Text('Adding Event')
             : const Text('Editing Event'),
         content: SizedBox(
-          height: 215,
+          height: widget.eventModel != null ? 265 : 220,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -72,6 +88,23 @@ class _ModalAddEventState extends State<ModalAddEvent> {
                 onPressed: () => _selectDate(context),
                 child: Text('Fecha: $selectedDateFormat'),
               ),
+              widget.eventModel != null
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const Text('Completado: '),
+                        Checkbox(
+                            value: isCompleted,
+                            onChanged: (bool? newValue) {
+                              setState(() {
+                                newValue != null
+                                    ? isCompleted = newValue
+                                    : false;
+                              });
+                            }),
+                      ],
+                    )
+                  : Container(),
               IconButton(
                 onPressed: () {
                   if (widget.eventModel == null) {
@@ -98,7 +131,7 @@ class _ModalAddEventState extends State<ModalAddEvent> {
                               'dscEvento': txtDescEvent.text,
                               'fechaEvento':
                                   DateFormat('yyyy-MM-dd').format(selectedDate),
-                              'completado': 0,
+                              'completado': isCompleted,
                             },
                             'idEvento')
                         .then((value) {

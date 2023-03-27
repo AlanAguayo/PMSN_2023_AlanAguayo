@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:practicauno/models/post_model.dart';
 import 'package:sqflite/sqflite.dart';
@@ -22,7 +23,7 @@ class DatabaseHelper {
     Directory folder = await getApplicationDocumentsDirectory();
     String pathDB = join(folder.path, nombreBD);
     //await deleteDatabase(
-    //   pathDB); //Usar en caso de que no se pueda acceder a la bd
+    //    pathDB); //Usar en caso de que no se pueda acceder a la bd
     return await openDatabase(
       pathDB,
       version: versionBD,
@@ -50,7 +51,7 @@ class DatabaseHelper {
         .update(table, map, where: '$id = ?', whereArgs: [map[id]]);
   }
 
-  Future<int> ELIMINAR(String table, int id, idR) async {
+  Future<int> ELIMINAR(String table, int id, String idR) async {
     var conexion = await database;
     return await conexion.delete(table, where: '$idR = ?', whereArgs: [id]);
   }
@@ -64,6 +65,14 @@ class DatabaseHelper {
   Future<List<EventModel>> GETALLEVENT() async {
     var conexion = await database;
     var result = await conexion.query('tblEvent', orderBy: 'fechaEvento ASC');
+    return result.map((event) => EventModel.fromMap(event)).toList();
+  }
+
+  Future<List<EventModel>> GETDAYEVENT(DateTime day) async {
+    var conexion = await database;
+    var result = await conexion.query('tblEvent',
+        orderBy: 'fechaEvento ASC',
+        where: 'fechaEvento = "${DateFormat('yyyy-MM-dd').format(day)}"');
     return result.map((event) => EventModel.fromMap(event)).toList();
   }
 }

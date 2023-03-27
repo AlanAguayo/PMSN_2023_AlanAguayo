@@ -6,7 +6,7 @@ import '../models/post_model.dart';
 import 'modal_add_post.dart';
 
 openCustomDialog(BuildContext context, PostModel? postModel,
-    EventModel? eventModel, String type) {
+    EventModel? eventModel, String type, DateTime? date) {
   return showGeneralDialog(
     context: context,
     barrierColor: Colors.black.withOpacity(0.5),
@@ -16,7 +16,10 @@ openCustomDialog(BuildContext context, PostModel? postModel,
         child: Opacity(
           opacity: animation.value,
           child: type == 'Event'
-              ? ModalAddEvent(eventModel: eventModel)
+              ? ModalAddEvent(
+                  eventModel: eventModel,
+                  date: date,
+                )
               : ModalAddPost(postModel: postModel),
         ),
       );

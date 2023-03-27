@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:practicauno/database/database_helper.dart';
 import 'package:provider/provider.dart';
 
@@ -40,6 +41,27 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
       ),
     );
 
+    Color color = Colors.transparent;
+    defineColor() {
+      if (widget.eventModel!.dateEvento != null) {
+        var diferencia = int.parse(
+                widget.eventModel!.dateEvento!.substring(8)) -
+            int.parse(
+                DateFormat('yyyy-MM-dd').format(DateTime.now()).substring(8));
+        if (widget.eventModel!.completado == 1) {
+          color = Colors.green;
+        } else {
+          if (diferencia < 0) {
+            color = Colors.red;
+          } else {
+            if (diferencia >= 0 && diferencia <= 2) {
+              color = Colors.yellow;
+            }
+          }
+        }
+      }
+    }
+
     final ribbonBottom = ClipRRect(
       borderRadius: const BorderRadius.only(
         bottomLeft: Radius.circular(10),
@@ -49,7 +71,7 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         alignment: Alignment.centerRight,
         height: 40,
-        color: Colors.transparent,
+        color: defineColor(),
         width: double.infinity,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,7 +86,6 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
               onPressed: () => _showDeleteModal(context),
               icon: iconTrash,
             ),
-            //),
           ],
         ),
       ),
@@ -74,12 +95,11 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
       padding: const EdgeInsets.all(10.0),
       child: TextButton(
         onPressed: () =>
-            openCustomDialog(context, null, widget.eventModel, 'Event'),
+            openCustomDialog(context, null, widget.eventModel, 'Event', null),
         child: Container(
           height: 180,
-          //height: MediaQuery.of(context).size.height / 4,
           decoration: BoxDecoration(
-            color: Colors.transparent,
+            color: color,
             borderRadius: BorderRadius.circular(10),
             boxShadow: const [
               BoxShadow(

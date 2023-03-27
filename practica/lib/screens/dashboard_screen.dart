@@ -92,7 +92,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          openCustomDialog(context, null, null, 'Post');
+          openCustomDialog(context, null, null, 'Post', null);
         },
         label: const Text('Post it!'),
         icon: const Icon(Icons.add_comment),

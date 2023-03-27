@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:practicauno/models/event_model.dart';
 import 'package:practicauno/screens/list_event_screen.dart';
 import 'package:practicauno/widgets/future_modal.dart';
-import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
-
 import '../database/database_helper.dart';
-import '../provider/flags_provider.dart';
-import '../provider/theme_provider.dart';
 
 class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
@@ -22,119 +19,73 @@ class _EventScreenState extends State<EventScreen> {
   DateTime? _selectedDate;
   var currentScreen = 1;
 
-  Map<String, List> mySelectedEvents = {};
+  defineEventColor(EventModel eventModel) {
+    if (eventModel.dateEvento != null) {
+      var diferencia = int.parse(eventModel.dateEvento!.substring(8)) -
+          int.parse(
+              DateFormat('yyyy-MM-dd').format(DateTime.now()).substring(8));
+      if (eventModel.completado == 1) {
+        return Colors.green;
+      } else {
+        if (diferencia < 0) {
+          return Colors.red;
+        } else {
+          if (diferencia >= 0 && diferencia <= 2) {
+            return Colors.yellow;
+          }
+          return Colors.white70;
+        }
+      }
+    }
+  }
 
   final descController = TextEditingController();
 
   DatabaseHelper? helper;
+  EventModel? oEventModel;
+
+  Map<DateTime, List>? events;
+  List<EventModel> eventDetails = List.empty();
 
   @override
   void initState() {
     super.initState();
+    events = {};
+    helper = DatabaseHelper();
     _selectedDate = _focusedDay;
-    loadPreviousEvents();
+    _loadDayEvent(_focusedDay);
   }
 
-  loadPreviousEvents() {
-    //Recupera eventos
-    mySelectedEvents = {
-      "2022-09-9": [
-        {"eventDesc": "11"},
-        {"eventDesc": "22"},
-      ],
-      "2022-09-30": [
-        {"eventDesc": "22"},
-      ],
-    };
-  }
-
-  List _listOfDayEvents(DateTime dateTime) {
-    if (mySelectedEvents[DateFormat('yyyy-MM-dd').format(dateTime)] != null) {
-      return mySelectedEvents[DateFormat('yyyy-MM-dd').format(dateTime)]!;
-    } else {
-      return [];
+  void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
+    if (!isSameDay(_selectedDate, selectedDay)) {
+      setState(() {
+        _selectedDate = selectedDay;
+        _focusedDay = focusedDay;
+        _loadDayEvent(selectedDay);
+      });
     }
   }
 
-  _showAddEventDialog() async {
-    await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text(
-          'Agrega un evento!',
-          textAlign: TextAlign.center,
-        ),
-        content: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: descController,
-              textCapitalization: TextCapitalization.words,
-              decoration: const InputDecoration(
-                labelText: 'Descripcion',
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancelar'),
-          ),
-          TextButton(
-            child: const Text('Agregar'),
-            onPressed: () {
-              if (descController.text.isEmpty) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                      'Ingrese una descripcion',
-                    ),
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-                return;
-              } else {
-                if (mySelectedEvents[
-                        DateFormat('yyyy-MM-dd').format(_selectedDate!)] !=
-                    null) {
-                  mySelectedEvents[
-                          DateFormat('yyyy-MM-dd').format(_selectedDate!)]
-                      ?.add({'eventDesc': descController.text});
-                } else {
-                  mySelectedEvents[
-                      DateFormat('yyyy-MM-dd').format(_selectedDate!)] = [
-                    {
-                      "eventDesc": descController.text,
-                    }
-                  ];
-                }
+  Map<DateTime, List<dynamic>> _fromModelToEvent(List<EventModel> events) {
+    Map<DateTime, List<dynamic>> data = {};
+    for (var event in events) {
+      DateTime date = DateTime.parse(event.dateEvento!);
+      if (data[date] == null) data[date] = [];
+      data[date]?.add(event);
+    }
+    return data;
+  }
 
-                setState(() {
-                  if (mySelectedEvents[
-                          DateFormat('yyyy-MM-dd').format(_selectedDate!)] !=
-                      null) {
-                    mySelectedEvents[
-                            DateFormat('yyyy-MM-dd').format(_selectedDate!)]
-                        ?.add({"eventDesc": descController.text});
-                  }
-                });
-                //Guarda cosas
-                descController.clear();
-                Navigator.pop(context);
-                return;
-              }
-            },
-          ),
-        ],
-      ),
-    );
+  _loadDayEvent(DateTime day) async {
+    return eventDetails = (await helper!.GETDAYEVENT(day)).cast<EventModel>();
+  }
+
+  List _eventsDay(DateTime day) {
+    return events![day] ?? [];
   }
 
   @override
   Widget build(BuildContext context) {
-    FlagsProvider flags = Provider.of<FlagsProvider>(context);
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -148,70 +99,135 @@ class _EventScreenState extends State<EventScreen> {
               setState(() {});
             },
             icon: currentScreen == 1
-                ? Icon(Icons.list)
-                : Icon(Icons.calendar_month),
+                ? const Icon(Icons.list)
+                : const Icon(Icons.calendar_month),
           )
         ],
         centerTitle: true,
         title: const Text('Eventos'),
       ),
-      body: currentScreen == 1 ? calendarWidget() : ListEventScreen(),
+      //calendarWidget
+      body: currentScreen == 1 ? calendarWidget() : const ListEventScreen(),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => openCustomDialog(context, null, null, 'Event'),
+        onPressed: () =>
+            openCustomDialog(context, null, null, 'Event', _focusedDay),
         label: const Text('New Event!'),
         icon: const Icon(Icons.add_comment),
       ),
     );
   }
 
-  Column calendarWidget() {
-    return Column(
-      children: [
-        Text(
-          'Administra tus eventos',
-          style: TextStyle(fontSize: 24),
-        ),
-        TableCalendar(
-          firstDay: DateTime(2023),
-          lastDay: DateTime(2030),
-          focusedDay: _focusedDay,
-          calendarFormat: _calendarFormat,
-          onDaySelected: (selectedDay, focusedDay) {
-            if (!isSameDay(_selectedDate, selectedDay)) {
-              setState(() {
-                _selectedDate = selectedDay;
-                _focusedDay = focusedDay;
-              });
+  FutureBuilder<List<EventModel>> calendarWidget() {
+    return FutureBuilder<List<EventModel>>(
+        future: helper!.GETALLEVENT(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<EventModel> allEvents = snapshot.data!;
+            if (allEvents.isNotEmpty) {
+              events = _fromModelToEvent(allEvents);
             }
-          },
-          selectedDayPredicate: (day) {
-            return isSameDay(_selectedDate, day);
-          },
-          onFormatChanged: (format) {
-            if (_calendarFormat != format) {
-              setState(() {
-                _calendarFormat = format;
-              });
-            }
-          },
-          onPageChanged: (focusedDay) {
-            _focusedDay = focusedDay;
-          },
-          eventLoader: _listOfDayEvents,
-        ),
-        ..._listOfDayEvents(_selectedDate!).map(
-          (event) => ListTile(
-            leading: const Icon(
-              Icons.done,
-              color: Colors.teal,
+          }
+          return SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Administra tus eventos',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                ),
+                TableCalendar(
+                  calendarFormat: _calendarFormat,
+                  focusedDay: _focusedDay,
+                  onCalendarCreated: (pageController) {
+                    _loadDayEvent(_selectedDate!);
+                  },
+                  calendarStyle: const CalendarStyle(
+                      markerDecoration: BoxDecoration(color: Colors.amber)),
+                  firstDay: DateTime(2023),
+                  lastDay: DateTime(2030),
+                  selectedDayPredicate: (day) {
+                    return isSameDay(_selectedDate, day);
+                  },
+                  onFormatChanged: (format) {
+                    if (_calendarFormat != format) {
+                      setState(() {
+                        _calendarFormat = format;
+                      });
+                    }
+                  },
+                  onPageChanged: (focusedDay) {
+                    _focusedDay = focusedDay;
+                  },
+                  onDaySelected: _onDaySelected,
+                  availableGestures: AvailableGestures.all,
+                  eventLoader: _eventsDay,
+                ),
+                Container(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    'Eventos de ${DateFormat('yyyy-MM-dd').format(_focusedDay)}',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                ...eventDetails.map((event) => eventDetails.isNotEmpty
+                    ? Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 110),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                openCustomDialog(
+                                    context, null, event, 'Event', null);
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(bottom: 10),
+                                padding: const EdgeInsets.all(10),
+                                alignment: Alignment.center,
+                                width: 200,
+                                decoration: BoxDecoration(
+                                    color: defineEventColor(event),
+                                    borderRadius: BorderRadius.circular(15),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Colors.black26,
+                                          offset: Offset(0, 2),
+                                          blurRadius: 2.0)
+                                    ]),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(
+                                      event.dscEvento.toString(),
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 14),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    : const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 50.0),
+                        child: Text(
+                          'No hay eventos disponibles',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      )),
+              ],
             ),
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: Text('Event Title: ${event['eventDesc']}'),
-            ),
-          ),
-        ),
-      ],
-    );
+          );
+        });
   }
 }

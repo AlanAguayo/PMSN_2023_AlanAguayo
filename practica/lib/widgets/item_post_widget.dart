@@ -81,7 +81,7 @@ class _ItemPostWidgetState extends State<ItemPostWidget> {
                 _showDeleteModal(context);
                 break;
               case 1:
-                openCustomDialog(context, widget.postModel, null, 'Post');
+                openCustomDialog(context, widget.postModel, null, 'Post', null);
                 break;
             }
           },
