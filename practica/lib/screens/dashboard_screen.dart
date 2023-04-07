@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practicauno/provider/flags_provider.dart';
+import 'package:practicauno/screens/list_post_cloud_screen.dart';
 import 'package:practicauno/screens/list_post_screen.dart';
 import 'package:provider/provider.dart';
 import '../provider/theme_provider.dart';
@@ -97,9 +98,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         label: const Text('Post it!'),
         icon: const Icon(Icons.add_comment),
       ),
-      body: flags.getUpdate() == true
+      /*body: flags.getUpdate() == true
           ? const ListPostScreen()
-          : const ListPostScreen(),
+          : const ListPostScreen(),*/
+      body: ListPostCloudScreen(),
     );
   }
 }

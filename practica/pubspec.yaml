@@ -46,8 +46,14 @@ dependencies:
   lottie: ^2.2.0
   shared_preferences: ^2.0.18
   http: ^0.13.5
-  table_calendar: ^3.0.9
-  intl: ^0.18.0
+  table_calendar: ^3.0.8
+  intl: ^0.17.0
+  firebase_core: ^2.8.0
+  firebase_auth: ^4.3.0
+  cloud_firestore: ^4.5.0
+  flutter_rating_bar: ^4.0.1
+  youtube_player_flutter: ^8.1.2
+
 
 dev_dependencies:
   flutter_test:

@@ -7,6 +7,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 import '../models/event_model.dart';
+import '../models/popular_model.dart';
 
 class DatabaseHelper {
   static final nombreBD = "TECBOOKBD";
@@ -37,6 +38,9 @@ class DatabaseHelper {
     db.execute(query);
     query =
         "CREATE TABLE tblEvent(idEvento INTEGER PRIMARY KEY, dscEvento VARCHAR(100), fechaEvento DATE, completado TINYINT) ";
+    db.execute(query);
+    query =
+        "CREATE TABLE tblPopular(backdrop_path TEXT, id INTEGER, original_language TEXT, original_title TEXT, overview TEXT, popularity REAL, poster_path TEXT, release_date TEXT, title TEXT, vote_average REAL, vote_count INTEGER) ";
     db.execute(query);
   }
 
@@ -74,5 +78,17 @@ class DatabaseHelper {
         orderBy: 'fechaEvento ASC',
         where: 'fechaEvento = "${DateFormat('yyyy-MM-dd').format(day)}"');
     return result.map((event) => EventModel.fromMap(event)).toList();
+  }
+
+  Future<List<PopularModel>> GETALLPOPULAR() async {
+    var conexion = await database;
+    var result = await conexion.query('tblPopular');
+    return result.map((event) => PopularModel.fromMap(event)).toList();
+  }
+
+  Future<List<PopularModel>> GETPOPULAR(int id) async {
+    var conexion = await database;
+    var result = await conexion.query('tblPopular', where: 'id=$id');
+    return result.map((event) => PopularModel.fromMap(event)).toList();
   }
 }

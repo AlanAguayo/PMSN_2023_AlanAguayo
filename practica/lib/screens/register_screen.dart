@@ -3,6 +3,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:practicauno/firebase/email_auth.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
 import '../responsive.dart';
@@ -17,6 +18,9 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final formKey = GlobalKey<FormState>();
   File? image;
+  EmailAuth emailAuth = EmailAuth();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
 
   Future pickImage(ImageSource source) async {
     try {
@@ -54,6 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
 
     final txtEmail = TextFormField(
+        controller: emailController,
         decoration: const InputDecoration(
           iconColor: Colors.white,
           label: Text("Email User",
@@ -75,6 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     final txtPass = TextFormField(
         obscureText: true,
+        controller: passController,
         style: const TextStyle(
           color: Colors.white,
         ),
@@ -103,7 +109,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final btnSingUp = SocialLoginButton(
         buttonType: SocialLoginButtonType.generalLogin,
         onPressed: () {
-          if (formKey.currentState!.validate()) {}
+          if (formKey.currentState!.validate()) {
+            emailAuth.createUserWithEmailAndPassword(
+                email: emailController.text, password: passController.text);
+          }
         });
 
     final btnImagen = ElevatedButton(

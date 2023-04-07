@@ -43,4 +43,20 @@ class PopularModel {
       voteCount: map['vote_count'],
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'backdrop_path': backdropPath,
+      'original_language': originalLanguage,
+      'original_title': originalTitle,
+      'overview': overview,
+      'popularity': popularity,
+      'poster_path': posterPath,
+      'release_date': releaseDate,
+      'title': title,
+      'vote_average': voteAverage,
+      'vote_count': voteCount,
+    };
+  }
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "566435107062",
+    "project_id": "pmsn23nai",
+    "storage_bucket": "pmsn23nai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566435107062:android:0a642f7d3af5239bc4dcd7",
+        "android_client_info": {
+          "package_name": "com.example.practicauno"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566435107062-8als4ah0sprofln9v2ohct0ktsg829ta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADYygBoPxzBBjq0Tg852ZINGUpw3CPFIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566435107062-8als4ah0sprofln9v2ohct0ktsg829ta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
