@@ -103,10 +103,11 @@ class _PopularMoviesScreenState extends State<PopularMoviesScreen> {
               );
             } else {
               return const Center(
-                  child: Text(
-                'Esta muy vacio por aqui :|',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ));
+                child: Text(
+                  'Esta muy vacio por aqui :|',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+              );
             }
           }
           return Container();

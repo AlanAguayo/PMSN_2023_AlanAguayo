@@ -53,15 +53,14 @@ class _MovieDetailState extends State<MovieDetail> {
                       } else {
                         helper
                             .ELIMINAR('tblPopular', widget.model.id!, 'id')
-                            .then((value) {
-                          flag.setUpdate();
-                          var msj = value > 0
-                              ? 'Se quito de favoritos'
-                              : 'ocurrio un error';
-
-                          var snackBar = SnackBar(content: Text(msj));
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        });
+                            .then(
+                          (value) {
+                            flag.setUpdate();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Se elimino de favoritos')));
+                          },
+                        );
                       }
                     },
                     child: Icon(
@@ -228,154 +227,6 @@ class _MovieDetailState extends State<MovieDetail> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget informacion() {
-    return Container(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                RatingBar(
-                  initialRating: widget.model.voteAverage! / 2,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  ratingWidget: RatingWidget(
-                      full: const Icon(Icons.star,
-                          color: Color.fromARGB(255, 255, 238, 0)),
-                      half: const Icon(
-                        Icons.star_half,
-                        color: Color.fromARGB(255, 255, 238, 0),
-                      ),
-                      empty: const Icon(
-                        Icons.star_outline,
-                        color: Color.fromARGB(255, 255, 238, 0),
-                      )),
-                  onRatingUpdate: (value) {},
-                ),
-              ],
-            ),
-            const Text(
-              'Sinopsis',
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            ),
-            Text(
-              widget.model.overview.toString(),
-              style: const TextStyle(fontSize: 16, color: Colors.white),
-            ),
-            const SizedBox(height: 40),
-            const Text(
-              'Actores',
-              style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            ),
-            const SizedBox(height: 10),
-            FutureBuilder<List<ActorModel>?>(
-              future: apiPopular.getAllActors(widget.model),
-              builder: (context, snapshot) {
-                if (snapshot.hasData && snapshot.data != null) {
-                  return SizedBox(
-                    height: 150,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        ActorModel actor = snapshot.data![index];
-                        return CardActor(
-                          name: actor.name.toString(),
-                          photo: actor.profilePath != null
-                              ? 'https://image.tmdb.org/t/p/original${actor.profilePath}'
-                              : 'https://www.personality-insights.com/wp-content/uploads/2017/12/default-profile-pic-e1513291410505.jpg',
-                          character: actor.character!,
-                        );
-                      },
-                    ),
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            ),
-          ],
-        ));
-  }
-
-  Widget botonera(BuildContext context) {
-    FlagsProvider flag = Provider.of<FlagsProvider>(context);
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 8.0,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          FutureBuilder(
-              future: helper.GETPOPULAR(widget.model.id!),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return InkWell(
-                    onTap: () {
-                      if (snapshot.data != true) {
-                        helper
-                            .INSERTAR('tblPopular', widget.model.toMap())
-                            .then((value) {
-                          flag.setUpdate();
-                          var msj = value > 0
-                              ? 'Se agrego a favoritos'
-                              : 'ocurrio un error';
-
-                          var snackBar = SnackBar(content: Text(msj));
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        });
-                      } else {
-                        helper
-                            .ELIMINAR(
-                                'tblPopularFav', widget.model.id!, 'idPopular')
-                            .then((value) {
-                          flag.setUpdate();
-                          var msj = value > 0
-                              ? 'Se quito de favoritos'
-                              : 'ocurrio un error';
-
-                          var snackBar = SnackBar(content: Text(msj));
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        });
-                      }
-                    },
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color:
-                              snapshot.data != true ? Colors.white : Colors.red,
-                        ),
-                        const Text(
-                          'Añadir a favoritos',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  );
-                } else {
-                  return const Center(child: CircularProgressIndicator());
-                }
-              }),
-        ],
       ),
     );
   }
