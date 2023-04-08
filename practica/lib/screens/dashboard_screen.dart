@@ -62,6 +62,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             trailing: const Icon(Icons.chevron_right),
           ),
+          ListTile(
+            onTap: () {
+              Navigator.pushNamed(context, '/games');
+            },
+            horizontalTitleGap: 0.0,
+            leading: const Icon(Icons.gamepad),
+            title: const Text(
+              'API Games',
+              style: TextStyle(fontSize: 16),
+            ),
+            trailing: const Icon(Icons.chevron_right),
+          ),
           DropdownButtonFormField<String>(
               isExpanded: true,
               value: theme.getTheme(),
