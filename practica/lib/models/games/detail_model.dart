@@ -109,7 +109,7 @@ class DetailModel {
         this.esrbRating,
         this.clip,
         this.descriptionRaw,
-    });
+    },);
 }
 
 class AddedByStatus {
