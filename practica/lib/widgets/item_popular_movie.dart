@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:practicauno/models/popular_model.dart';
 
 class ItemPopularMovie extends StatelessWidget {
-  ItemPopularMovie({super.key, required this.popularModel});
+  const ItemPopularMovie({super.key, required this.popularModel});
 
   final PopularModel popularModel;
 

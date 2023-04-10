@@ -7,7 +7,7 @@ import '../models/event_model.dart';
 import '../provider/flags_provider.dart';
 
 class ModalAddEvent extends StatefulWidget {
-  ModalAddEvent({super.key, this.eventModel, this.date});
+  const ModalAddEvent({super.key, this.eventModel, this.date});
 
   final DateTime? date;
   final EventModel? eventModel;
@@ -145,8 +145,8 @@ class _ModalAddEventState extends State<ModalAddEvent> {
                   }
                 },
                 icon: widget.eventModel != null
-                    ? Icon(Icons.navigate_next)
-                    : Icon(Icons.add),
+                    ? const Icon(Icons.navigate_next)
+                    : const Icon(Icons.add),
               )
             ],
           ),

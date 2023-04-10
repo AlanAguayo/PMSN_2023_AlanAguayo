@@ -8,7 +8,7 @@ import '../provider/flags_provider.dart';
 import 'future_modal.dart';
 
 class ItemEventWidget extends StatefulWidget {
-  ItemEventWidget({super.key, this.eventModel});
+  const ItemEventWidget({super.key, this.eventModel});
 
   final EventModel? eventModel;
 
@@ -25,13 +25,13 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
   Widget build(BuildContext context) {
     flags = Provider.of<FlagsProvider>(context);
 
-    final iconTrash = Icon(
+    var iconTrash = const Icon(
       Icons.delete,
       size: 35,
     );
 
     final cardDesc = Container(
-      padding: EdgeInsets.only(right: 8, left: 8, top: 20, bottom: 8),
+      padding: const EdgeInsets.only(right: 8, left: 8, top: 20, bottom: 8),
       alignment: Alignment.center,
       color: Colors.transparent,
       height: 120,
@@ -113,7 +113,7 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
             children: [
               cardDesc,
               ribbonBottom,
-              Divider(color: Colors.white, height: 1, thickness: 2),
+              const Divider(color: Colors.white, height: 1, thickness: 2),
             ],
           ),
         ),

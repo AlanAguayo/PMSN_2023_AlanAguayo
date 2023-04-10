@@ -2,7 +2,7 @@ class VideoModel {
   int? id;
   String? name;
   String? preview;
-  Map<String, String>? data;
+  Data? data;
 
   VideoModel({
     this.id,
@@ -16,16 +16,35 @@ class VideoModel {
       id: map['id'],
       name: map['name'],
       preview: map['preview'],
-      data: map['data'],
+      data: Data.fromMap(map['data']),
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {'id': id, 'name': name, 'data': data, 'preview': preview};
+  }
+}
+
+class Data {
+  String? cuatro;
+  String? max;
+
+  Data({
+    this.cuatro,
+    this.max,
+  });
+
+  factory Data.fromMap(Map<String, dynamic> map) {
+    return Data(
+      cuatro: map['480'],
+      max: map['max'],
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'name': name,
-      'preview': preview,
-      'data': data,
+      '480': cuatro,
+      'max': max,
     };
   }
 }

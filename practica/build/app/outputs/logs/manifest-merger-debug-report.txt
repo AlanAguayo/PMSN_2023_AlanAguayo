@@ -64,6 +64,8 @@ MERGED from [:image_picker_android] C:\Users\agasa\Downloads\Moviles\MovilesServ
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:sqflite] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\sqflite\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:path_provider_android] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:video_player_android] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\video_player_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:wakelock] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\wakelock\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-auth:21.2.0] C:\Users\agasa\.gradle\caches\transforms-3\f2a43ffde3f37e2a243ebca615f69ca6\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:17:1-75:12
 MERGED from [com.google.android.recaptcha:recaptcha:18.0.1] C:\Users\agasa\.gradle\caches\transforms-3\98f1b18443aab1b426dd51471ca033e7\transformed\jetified-recaptcha-18.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\agasa\.gradle\caches\transforms-3\3c0e35d493ccd3f2bb8b07f96b013b9c\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
@@ -89,6 +91,10 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\a
 MERGED from [androidx.webkit:webkit:1.5.0] C:\Users\agasa\.gradle\caches\transforms-3\8d0660e5c4a18c0bb39ca13cfee34410\transformed\webkit-1.5.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.browser:browser:1.4.0] C:\Users\agasa\.gradle\caches\transforms-3\3df77d3f0e42ee5d73cdfadb8bcdc01c\transformed\browser-1.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\agasa\.gradle\caches\transforms-3\d5f3815dfe40e797f34b499819b1d7cc\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\1688439578948b05c7e665985bbd089a\transformed\jetified-exoplayer-hls-2.18.5\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\38a1b3b2eae089beac13e0d13859d348\transformed\jetified-exoplayer-dash-2.18.5\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\57d85dba5609c48505fb1d654048d271\transformed\jetified-exoplayer-smoothstreaming-2.18.5\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\0167bec32a3e060ef621c334667072b8\transformed\jetified-exoplayer-core-2.18.5\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.core:core-ktx:1.8.0] C:\Users\agasa\.gradle\caches\transforms-3\dc71fd3497a9e877c2924d663c277706\transformed\jetified-core-ktx-1.8.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\agasa\.gradle\caches\transforms-3\c509b9e3fe4b622170021d255a2c783f\transformed\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\agasa\.gradle\caches\transforms-3\a2865fe33e16ee3047cda5a689a86757\transformed\jetified-emoji2-views-helper-1.2.0\AndroidManifest.xml:2:1-7:12
@@ -109,6 +115,11 @@ MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\agasa\.gradle\
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\agasa\.gradle\caches\transforms-3\635ad80c5c3146b24e3162c16562e75f\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\agasa\.gradle\caches\transforms-3\c2ffae25dd41d112c4d47286a74e6dc7\transformed\jetified-savedstate-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\agasa\.gradle\caches\transforms-3\e741b91ef85b3ecd51b47472047a4349\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.exoplayer:exoplayer-datasource:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\2a0d247823b46cf9f081f6cdd8d8b755\transformed\jetified-exoplayer-datasource-2.18.5\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\8069095443205e0f483ea63e40550ea3\transformed\jetified-exoplayer-extractor-2.18.5\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-decoder:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\3a054999f260e01916a7ba641d340948\transformed\jetified-exoplayer-decoder-2.18.5\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-database:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\6c0f4a452bb4e6a0115cf21b2643f0bd\transformed\jetified-exoplayer-database-2.18.5\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\c2d8b1703eaa875ee1c10e4a8d1c5763\transformed\jetified-exoplayer-common-2.18.5\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\agasa\.gradle\caches\transforms-3\73a50a59c73d15f4a52f90d43e383050\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\agasa\.gradle\caches\transforms-3\40cb8bdf29fb083878bcd926b098769e\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\agasa\.gradle\caches\transforms-3\5d1a4550810b5c51e03c73500276987c\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
@@ -154,6 +165,10 @@ MERGED from [:sqflite] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN
 MERGED from [:sqflite] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\sqflite\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:video_player_android] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\video_player_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:video_player_android] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\video_player_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:wakelock] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\wakelock\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:wakelock] C:\Users\agasa\Downloads\Moviles\MovilesServiciosWeb\PMSN_2023_AlanAguayo\practica\build\wakelock\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-auth:21.2.0] C:\Users\agasa\.gradle\caches\transforms-3\f2a43ffde3f37e2a243ebca615f69ca6\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:21:5-23:64
 MERGED from [com.google.firebase:firebase-auth:21.2.0] C:\Users\agasa\.gradle\caches\transforms-3\f2a43ffde3f37e2a243ebca615f69ca6\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:21:5-23:64
 MERGED from [com.google.android.recaptcha:recaptcha:18.0.1] C:\Users\agasa\.gradle\caches\transforms-3\98f1b18443aab1b426dd51471ca033e7\transformed\jetified-recaptcha-18.0.1\AndroidManifest.xml:5:5-44
@@ -204,6 +219,14 @@ MERGED from [androidx.browser:browser:1.4.0] C:\Users\agasa\.gradle\caches\trans
 MERGED from [androidx.browser:browser:1.4.0] C:\Users\agasa\.gradle\caches\transforms-3\3df77d3f0e42ee5d73cdfadb8bcdc01c\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\agasa\.gradle\caches\transforms-3\d5f3815dfe40e797f34b499819b1d7cc\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\agasa\.gradle\caches\transforms-3\d5f3815dfe40e797f34b499819b1d7cc\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\1688439578948b05c7e665985bbd089a\transformed\jetified-exoplayer-hls-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\1688439578948b05c7e665985bbd089a\transformed\jetified-exoplayer-hls-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\38a1b3b2eae089beac13e0d13859d348\transformed\jetified-exoplayer-dash-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\38a1b3b2eae089beac13e0d13859d348\transformed\jetified-exoplayer-dash-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\57d85dba5609c48505fb1d654048d271\transformed\jetified-exoplayer-smoothstreaming-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\57d85dba5609c48505fb1d654048d271\transformed\jetified-exoplayer-smoothstreaming-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\0167bec32a3e060ef621c334667072b8\transformed\jetified-exoplayer-core-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\0167bec32a3e060ef621c334667072b8\transformed\jetified-exoplayer-core-2.18.5\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core-ktx:1.8.0] C:\Users\agasa\.gradle\caches\transforms-3\dc71fd3497a9e877c2924d663c277706\transformed\jetified-core-ktx-1.8.0\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.core:core-ktx:1.8.0] C:\Users\agasa\.gradle\caches\transforms-3\dc71fd3497a9e877c2924d663c277706\transformed\jetified-core-ktx-1.8.0\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\agasa\.gradle\caches\transforms-3\c509b9e3fe4b622170021d255a2c783f\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
@@ -244,6 +267,16 @@ MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\agasa\.gradle\caches
 MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\agasa\.gradle\caches\transforms-3\c2ffae25dd41d112c4d47286a74e6dc7\transformed\jetified-savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\agasa\.gradle\caches\transforms-3\e741b91ef85b3ecd51b47472047a4349\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\agasa\.gradle\caches\transforms-3\e741b91ef85b3ecd51b47472047a4349\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.exoplayer:exoplayer-datasource:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\2a0d247823b46cf9f081f6cdd8d8b755\transformed\jetified-exoplayer-datasource-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-datasource:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\2a0d247823b46cf9f081f6cdd8d8b755\transformed\jetified-exoplayer-datasource-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\8069095443205e0f483ea63e40550ea3\transformed\jetified-exoplayer-extractor-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\8069095443205e0f483ea63e40550ea3\transformed\jetified-exoplayer-extractor-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-decoder:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\3a054999f260e01916a7ba641d340948\transformed\jetified-exoplayer-decoder-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-decoder:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\3a054999f260e01916a7ba641d340948\transformed\jetified-exoplayer-decoder-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-database:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\6c0f4a452bb4e6a0115cf21b2643f0bd\transformed\jetified-exoplayer-database-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-database:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\6c0f4a452bb4e6a0115cf21b2643f0bd\transformed\jetified-exoplayer-database-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\c2d8b1703eaa875ee1c10e4a8d1c5763\transformed\jetified-exoplayer-common-2.18.5\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\c2d8b1703eaa875ee1c10e4a8d1c5763\transformed\jetified-exoplayer-common-2.18.5\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\agasa\.gradle\caches\transforms-3\73a50a59c73d15f4a52f90d43e383050\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\agasa\.gradle\caches\transforms-3\73a50a59c73d15f4a52f90d43e383050\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\agasa\.gradle\caches\transforms-3\40cb8bdf29fb083878bcd926b098769e\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
@@ -400,6 +433,10 @@ uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-auth:21.2.0] C:\Users\agasa\.gradle\caches\transforms-3\f2a43ffde3f37e2a243ebca615f69ca6\transformed\jetified-firebase-auth-21.2.0\AndroidManifest.xml:26:5-79
 MERGED from [com.google.firebase:firebase-firestore:24.4.5] C:\Users\agasa\.gradle\caches\transforms-3\01657b9f42630066caa2be3abbbdc90c\transformed\jetified-firebase-firestore-24.4.5\AndroidManifest.xml:12:5-79
 MERGED from [com.google.firebase:firebase-firestore:24.4.5] C:\Users\agasa\.gradle\caches\transforms-3\01657b9f42630066caa2be3abbbdc90c\transformed\jetified-firebase-firestore-24.4.5\AndroidManifest.xml:12:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\0167bec32a3e060ef621c334667072b8\transformed\jetified-exoplayer-core-2.18.5\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\0167bec32a3e060ef621c334667072b8\transformed\jetified-exoplayer-core-2.18.5\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\c2d8b1703eaa875ee1c10e4a8d1c5763\transformed\jetified-exoplayer-common-2.18.5\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.18.5] C:\Users\agasa\.gradle\caches\transforms-3\c2d8b1703eaa875ee1c10e4a8d1c5763\transformed\jetified-exoplayer-common-2.18.5\AndroidManifest.xml:24:5-79
 MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\agasa\.gradle\caches\transforms-3\b8d152da90f8ad50ccb85843bc53a8de\transformed\jetified-grpc-android-1.52.1\AndroidManifest.xml:9:5-79
 MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\agasa\.gradle\caches\transforms-3\b8d152da90f8ad50ccb85843bc53a8de\transformed\jetified-grpc-android-1.52.1\AndroidManifest.xml:9:5-79
 	android:name

@@ -7,7 +7,7 @@ import '../provider/flags_provider.dart';
 import 'future_modal.dart';
 
 class ItemPostWidget extends StatefulWidget {
-  ItemPostWidget({super.key, this.postModel});
+  const ItemPostWidget({super.key, this.postModel});
 
   final PostModel? postModel;
 
@@ -24,13 +24,13 @@ class _ItemPostWidgetState extends State<ItemPostWidget> {
   Widget build(BuildContext context) {
     flags = Provider.of<FlagsProvider>(context);
 
-    final iconMore = Icon(
+    var iconMore = const Icon(
       Icons.more_horiz,
       size: 35,
     );
 
     final cardDesc = Container(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       alignment: Alignment.center,
       color: Colors.green,
       height: 160,

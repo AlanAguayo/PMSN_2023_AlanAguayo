@@ -3,20 +3,14 @@ class GamesModel {
   String? name;
   String? released;
   String? background_image;
-  double? rating;
   int? metacritic;
-  String? saturatedColor;
-  String? dominantColor;
 
   GamesModel({
     this.id,
     this.name,
     this.released,
     this.background_image,
-    this.rating,
     this.metacritic,
-    this.saturatedColor,
-    this.dominantColor,
   });
 
   factory GamesModel.fromMap(Map<String, dynamic> map) {
@@ -25,10 +19,7 @@ class GamesModel {
       name: map['name'],
       released: map['released'],
       background_image: map['background_image'],
-      rating: map['rating'],
       metacritic: map['metacritic'],
-      saturatedColor: map['saturatedColor'],
-      dominantColor: map['dominantColor'],
     );
   }
 
@@ -38,10 +29,7 @@ class GamesModel {
       'name': name,
       'released': released,
       'background_image': background_image,
-      'rating': rating,
       'metacritic': metacritic,
-      'saturatedColor': saturatedColor,
-      'dominantColor': dominantColor,
     };
   }
 }

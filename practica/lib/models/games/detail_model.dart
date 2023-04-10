@@ -1,60 +1,31 @@
 class DetailModel {
   int? id;
   String? name;
-  String? description;
+  String? description_raw;
   int? metacritic;
   String? released;
-  String? backgroundImage;
-  String? backgroundImageAdditional;
-  String? website;
-  double? rating;
-  Map<String, int>? reactions;
-  String? saturatedColor;
-  String? dominantColor;
+  String? background_image;
+  String? background_image_additional;
 
   DetailModel({
     this.id,
     this.name,
-    this.description,
+    this.description_raw,
     this.metacritic,
     this.released,
-    this.backgroundImage,
-    this.backgroundImageAdditional,
-    this.rating,
-    this.reactions,
-    this.saturatedColor,
-    this.dominantColor,
+    this.background_image,
+    this.background_image_additional,
   });
 
-  factory DetailModel.fromMap(Map<String, dynamic> map) {
+  factory DetailModel.fromJson(Map<String, dynamic> json) {
     return DetailModel(
-      id: map['id'],
-      name: map['name'],
-      description: map['description'],
-      metacritic: map['metacritic'],
-      released: map['released'],
-      backgroundImage: map['backgroundImage'],
-      backgroundImageAdditional: map['backgroundImageAdditional'],
-      rating: map['rating'],
-      reactions: map['reactions'],
-      saturatedColor: map['saturatedColor'],
-      dominantColor: map['dominantColor'],
+      id: json['id'],
+      name: json['name'],
+      description_raw: json['description_raw'],
+      metacritic: json['metacritic'],
+      released: json['released'],
+      background_image: json['background_image'],
+      background_image_additional: json['background_image_additional'],
     );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'description': description,
-      'metacritic': metacritic,
-      'released': released,
-      'backgroundImage': backgroundImage,
-      'backgroundImageAdditional': backgroundImageAdditional,
-      'rating': rating,
-      'reactions': reactions,
-      'saturatedColor': saturatedColor,
-      'dominantColor': dominantColor,
-    };
   }
 }

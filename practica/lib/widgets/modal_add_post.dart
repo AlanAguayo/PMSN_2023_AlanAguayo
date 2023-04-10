@@ -6,7 +6,7 @@ import '../models/post_model.dart';
 import '../provider/flags_provider.dart';
 
 class ModalAddPost extends StatefulWidget {
-  ModalAddPost({super.key, this.postModel});
+  const ModalAddPost({super.key, this.postModel});
 
   final PostModel? postModel;
 
