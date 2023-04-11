@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:practicauno/network/api_games.dart';
@@ -18,13 +20,14 @@ class GameDetail extends StatefulWidget {
 class _GameDetailState extends State<GameDetail> {
   final ApiGames apiGames = ApiGames();
   late Future<DetailModel> gameDetail = apiGames.getGameDetail(widget.id);
-  Color colorMeta = Colors.green;
+  Color colorMeta = Color.fromARGB(255, 1, 197, 8);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detail Screen'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: FutureBuilder<DetailModel>(
@@ -58,62 +61,206 @@ class _GameDetailState extends State<GameDetail> {
                   children: [
                     Text(
                       snapshot.data!.name.toString(),
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 26,
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
+                    ),
+                    Text(
+                        'Clasificacion: ${snapshot.data!.esrb_rating!.name.toString()}'),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      height: 20,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: snapshot.data!.publishers!.length,
+                          itemBuilder: (context, index) {
+                            if (snapshot.data!.publishers![
+                                    snapshot.data!.publishers!.length - 1] !=
+                                snapshot.data!.publishers![index]) {
+                              return Text(
+                                  '${snapshot.data!.publishers![index].name.toString()} - ');
+                            } else {
+                              return Text(
+                                  '${snapshot.data!.publishers![index].name.toString()}');
+                            }
+                          }),
+                    ),
+                    const SizedBox(
+                      height: 2,
                     ),
                     Stack(
                       alignment: Alignment.topRight,
                       children: [
-                        Image.network(snapshot.data!.background_image
-                                    .toString() !=
-                                'null'
-                            ? snapshot.data!.background_image.toString()
-                            : 'https://imgs.search.brave.com/oklXnQr3XKmAt4D5nMVW-iChIPkHYc_GwB3R8JSRei4/rs:fit:720:717:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vNzM2/eC8yYi8wNC8zZi8y/YjA0M2Y1ZTcwMjE3/MzQyOTFmNGJhNTc4/ZTgzOWUxYS5qcGc'),
+                        Image.network(
+                          snapshot.data!.background_image.toString() != 'null'
+                              ? snapshot.data!.background_image.toString()
+                              : 'https://imgs.search.brave.com/oklXnQr3XKmAt4D5nMVW-iChIPkHYc_GwB3R8JSRei4/rs:fit:720:717:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vNzM2/eC8yYi8wNC8zZi8y/YjA0M2Y1ZTcwMjE3/MzQyOTFmNGJhNTc4/ZTgzOWUxYS5qcGc',
+                        ),
                         Container(
                           margin: const EdgeInsets.all(10),
-                          padding: const EdgeInsets.all(10),
-                          width: 50,
-                          height: 50,
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          width: 60,
+                          height: 60,
                           decoration: BoxDecoration(
                             color: colorMeta,
                             borderRadius: const BorderRadius.all(
-                              Radius.circular(20),
+                              Radius.circular(6),
                             ),
                           ),
-                          child: Center(
-                            child: Text(
-                              snapshot.data!.metacritic.toString() != null
-                                  ? snapshot.data!.metacritic.toString()
-                                  : 'https://imgs.search.brave.com/oklXnQr3XKmAt4D5nMVW-iChIPkHYc_GwB3R8JSRei4/rs:fit:720:717:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vNzM2/eC8yYi8wNC8zZi8y/YjA0M2Y1ZTcwMjE3/MzQyOTFmNGJhNTc4/ZTgzOWUxYS5qcGc',
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(),
+                              Center(
+                                child: Text(
+                                  snapshot.data!.metacritic.toString() != null
+                                      ? snapshot.data!.metacritic.toString()
+                                      : 'https://imgs.search.brave.com/oklXnQr3XKmAt4D5nMVW-iChIPkHYc_GwB3R8JSRei4/rs:fit:720:717:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vNzM2/eC8yYi8wNC8zZi8y/YjA0M2Y1ZTcwMjE3/MzQyOTFmNGJhNTc4/ZTgzOWUxYS5qcGc',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    color: Color.fromARGB(230, 255, 255, 255),
+                                  ),
+                                ),
                               ),
-                            ),
+                              const Text(
+                                'Metacritics',
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(230, 255, 255, 255)),
+                              ),
+                              Container(),
+                            ],
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
+                    ),
+                    SizedBox(
+                      height: 20,
+                      child: ListView.builder(
+                          itemCount: snapshot.data!.genres!.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Text(
+                              '${snapshot.data!.genres![index].name.toString()}   ',
+                              style: const TextStyle(
+                                letterSpacing: 0.5,
+                                fontSize: 16,
+                              ),
+                            );
+                          }),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text(
+                      'Opinion de la comunidad',
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                    ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    SizedBox(
+                      height: 45,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: snapshot.data!.ratings!.length,
+                          itemBuilder: (context, index) {
+                            var ratingEmoji = '';
+                            var ratingColor = [
+                              const Color.fromARGB(255, 92, 92, 92),
+                              const Color.fromARGB(255, 92, 92, 92)
+                            ];
+                            switch (
+                                snapshot.data!.ratings![index].id.toString()) {
+                              case '5':
+                                ratingEmoji = '😄';
+                                ratingColor = [
+                                  Color.fromARGB(255, 29, 252, 0),
+                                  Color.fromARGB(255, 0, 141, 0)
+                                ];
+                                break;
+                              case '4':
+                                ratingEmoji = '🙂';
+                                ratingColor = [
+                                  const Color.fromARGB(255, 0, 120, 189),
+                                  const Color.fromARGB(255, 0, 86, 136)
+                                ];
+                                break;
+                              case '3':
+                                ratingEmoji = '😕';
+                                ratingColor = [
+                                  Color.fromARGB(255, 160, 91, 0),
+                                  Color.fromARGB(255, 223, 126, 0)
+                                ];
+                                break;
+                              case '1':
+                                ratingEmoji = '😴';
+
+                                ratingColor = [
+                                  Color.fromARGB(255, 117, 0, 0),
+                                  Color.fromARGB(255, 233, 0, 0)
+                                ];
+                                break;
+                              default:
+                                ratingEmoji = '';
+                                ratingColor = [
+                                  const Color.fromARGB(255, 92, 92, 92),
+                                  const Color.fromARGB(255, 92, 92, 92)
+                                ];
+                            }
+                            return Container(
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    transform: const GradientRotation(80),
+                                    colors: ratingColor,
+                                  ),
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(5),
+                                  ),
+                                  border: Border.all(width: 1)),
+                              padding: const EdgeInsets.all(5),
+                              width: (MediaQuery.of(context).size.width *
+                                      snapshot.data!.ratings![index].percent!
+                                          .toInt() /
+                                      200) +
+                                  50,
+                              child: Column(
+                                children: [
+                                  Text(ratingEmoji),
+                                  Text(
+                                      '${snapshot.data!.ratings![index].percent.toString()}%'),
+                                ],
+                              ),
+                            );
+                          }),
+                    ),
+                    const SizedBox(
+                      height: 5,
                     ),
                     const Row(
                       children: [
                         Text(
                           'Descripcion',
                           style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold),
+                              fontSize: 22, fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 2,
                     ),
                     Text(
                       textAlign: TextAlign.justify,
@@ -121,7 +268,7 @@ class _GameDetailState extends State<GameDetail> {
                       style: const TextStyle(fontSize: 14),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     FutureBuilder<List<ScreenshotModel>?>(
                       future: apiGames.getGameImage(widget.id),
@@ -136,8 +283,8 @@ class _GameDetailState extends State<GameDetail> {
                                       'Screenshots',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontSize: 26,
-                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ],
@@ -174,38 +321,49 @@ class _GameDetailState extends State<GameDetail> {
                     const SizedBox(
                       height: 10,
                     ),
+                    const Row(
+                      children: [
+                        Text(
+                          'Trailers',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
                     FutureBuilder<List<VideoModel>?>(
                       future: apiGames.getGameVideo(widget.id),
                       builder: (context, snapshot) {
                         if (snapshot.hasData && snapshot.data != null) {
                           if (snapshot.data!.isNotEmpty) {
                             return SizedBox(
-                              height: 200,
+                              height: 230,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: snapshot.data!.length,
                                 itemBuilder: (context, index) {
                                   VideoModel video = snapshot.data![index];
-
                                   return Chewie(
                                     controller: ChewieController(
-                                        allowMuting: true,
-                                        allowFullScreen: false,
-                                        videoPlayerController:
-                                            VideoPlayerController.network(
-                                                video.data!.max.toString()),
-                                        autoPlay: false,
-                                        startAt: Duration(seconds: 1),
-                                        looping: false,
-                                        aspectRatio: 2,
-                                        overlay: Container(
-                                            padding: const EdgeInsets.only(
-                                                left: 20, top: 10),
-                                            child: Text(video.name.toString())),
-                                        placeholder: Center(
-                                          child: Image.network(
-                                              video.preview.toString()),
-                                        )),
+                                      allowMuting: true,
+                                      allowFullScreen: false,
+                                      videoPlayerController:
+                                          VideoPlayerController.network(
+                                              video.data!.max.toString()),
+                                      autoPlay: false,
+                                      looping: false,
+                                      aspectRatio: 2,
+                                      overlay: Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 20, top: 10),
+                                          child: Text(video.name.toString())),
+                                      placeholder: Center(
+                                        child: Image.network(
+                                            video.preview.toString()),
+                                      ),
+                                    ),
                                   );
                                 },
                               ),
@@ -221,7 +379,7 @@ class _GameDetailState extends State<GameDetail> {
                       },
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 8,
                     ),
                     Text(
                       'Fecha de lanzamiento: ${snapshot.data!.released.toString()}',
@@ -231,7 +389,139 @@ class _GameDetailState extends State<GameDetail> {
                         color: Color.fromARGB(255, 192, 192, 192),
                       ),
                     ),
-                    //Text(snapshot.data!.genres.toString()),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Divider(
+                        color: Color.fromARGB(176, 139, 139, 139),
+                        height: 2,
+                        indent: 10,
+                        endIndent: 10,
+                        thickness: 1.5),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text(
+                      'Tags',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 236, 236, 236),
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    SizedBox(
+                      height: 100,
+                      child: GridView.builder(
+                        itemCount: snapshot.data!.tags!.length,
+                        itemBuilder: (context, index) {
+                          return Text(
+                            snapshot.data!.tags![index].name.toString(),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 11,
+                              color: Color.fromARGB(255, 192, 192, 192),
+                            ),
+                          );
+                        },
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 100,
+                                crossAxisSpacing: 0,
+                                mainAxisSpacing: 0,
+                                mainAxisExtent: 25),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Divider(
+                        color: Color.fromARGB(176, 139, 139, 139),
+                        height: 2,
+                        indent: 10,
+                        endIndent: 20,
+                        thickness: 1.5),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text(
+                      'Desarrolladores',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 236, 236, 236),
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      height: 25,
+                      child: GridView.builder(
+                        itemCount: snapshot.data!.developers!.length,
+                        itemBuilder: (context, index) {
+                          return Text(
+                            snapshot.data!.developers![index].name.toString(),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 11,
+                              color: Color.fromARGB(255, 192, 192, 192),
+                            ),
+                          );
+                        },
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 200,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 0,
+                                mainAxisExtent: 20),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Divider(
+                        color: Color.fromARGB(176, 139, 139, 139),
+                        height: 2,
+                        indent: 10,
+                        endIndent: 10,
+                        thickness: 1.5),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text(
+                      'Plataformas',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 236, 236, 236),
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: GridView.builder(
+                        itemCount: snapshot.data!.platforms!.length,
+                        itemBuilder: (context, index) {
+                          return Text(
+                            snapshot.data!.platforms![index].platform!.name
+                                .toString(),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 11,
+                              color: Color.fromARGB(255, 192, 192, 192),
+                            ),
+                          );
+                        },
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 100,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 0,
+                                mainAxisExtent: 20),
+                      ),
+                    ),
                   ],
                 ),
               );

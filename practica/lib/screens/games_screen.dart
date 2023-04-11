@@ -77,7 +77,7 @@ class _GamesScreenState extends State<GamesScreen> {
                       child: Text(
                         'Populares',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                            fontSize: 22, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -90,7 +90,7 @@ class _GamesScreenState extends State<GamesScreen> {
                       child: Text(
                         'Mejores Calificados',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                            fontSize: 22, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -103,12 +103,12 @@ class _GamesScreenState extends State<GamesScreen> {
                       child: Text(
                         'Actualizaciones',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                            fontSize: 22, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
                 ),
-                WidgetItemGame('20', '', '-metacritic'),
+                WidgetItemGame('20', '', '-updated'),
               ],
             )
           : FutureBuilder(
@@ -156,7 +156,7 @@ class _GamesScreenState extends State<GamesScreen> {
       builder: (context, AsyncSnapshot<List<GamesModel>?> snapshot) {
         if (snapshot.data != null) {
           return SizedBox(
-            height: 300,
+            height: 260,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: snapshot.data!.length,
