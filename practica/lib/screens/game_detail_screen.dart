@@ -70,8 +70,10 @@ class _GameDetailState extends State<GameDetail> {
                     const SizedBox(
                       height: 5,
                     ),
-                    Text(
-                        'Clasificacion: ${snapshot.data!.esrb_rating!.name.toString()}'),
+                    snapshot.data!.esrb_rating != null
+                        ? Text(
+                            'Clasificacion: ${snapshot.data!.esrb_rating!.name.toString()}')
+                        : const Text('Sin clasificacion'),
                     const SizedBox(
                       height: 5,
                     ),
@@ -170,10 +172,10 @@ class _GameDetailState extends State<GameDetail> {
                           TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(
-                      height: 2,
+                      height: 5,
                     ),
                     SizedBox(
-                      height: 45,
+                      height: 60,
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: snapshot.data!.ratings!.length,
@@ -232,16 +234,22 @@ class _GameDetailState extends State<GameDetail> {
                                   ),
                                   border: Border.all(width: 1)),
                               padding: const EdgeInsets.all(5),
-                              width: (MediaQuery.of(context).size.width *
-                                      snapshot.data!.ratings![index].percent!
-                                          .toInt() /
-                                      200) +
-                                  50,
+                              width: (MediaQuery.of(context).size.width / 4),
                               child: Column(
                                 children: [
                                   Text(ratingEmoji),
                                   Text(
-                                      '${snapshot.data!.ratings![index].percent.toString()}%'),
+                                    snapshot.data!.ratings![index].title
+                                        .toString()
+                                        .toUpperCase(),
+                                    style: const TextStyle(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                      '${snapshot.data!.ratings![index].percent.toString()}%',
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold)),
                                 ],
                               ),
                             );
@@ -321,52 +329,57 @@ class _GameDetailState extends State<GameDetail> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Row(
-                      children: [
-                        Text(
-                          'Trailers',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
                     FutureBuilder<List<VideoModel>?>(
                       future: apiGames.getGameVideo(widget.id),
                       builder: (context, snapshot) {
                         if (snapshot.hasData && snapshot.data != null) {
                           if (snapshot.data!.isNotEmpty) {
-                            return SizedBox(
-                              height: 230,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: snapshot.data!.length,
-                                itemBuilder: (context, index) {
-                                  VideoModel video = snapshot.data![index];
-                                  return Chewie(
-                                    controller: ChewieController(
-                                      allowMuting: true,
-                                      allowFullScreen: false,
-                                      videoPlayerController:
-                                          VideoPlayerController.network(
-                                              video.data!.max.toString()),
-                                      autoPlay: false,
-                                      looping: false,
-                                      aspectRatio: 2,
-                                      overlay: Container(
-                                          padding: const EdgeInsets.only(
-                                              left: 20, top: 10),
-                                          child: Text(video.name.toString())),
-                                      placeholder: Center(
-                                        child: Image.network(
-                                            video.preview.toString()),
+                            return Column(
+                              children: [
+                                const Row(
+                                  children: [
+                                    Text(
+                                      'Trailers',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                  );
-                                },
-                              ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 230,
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: snapshot.data!.length,
+                                    itemBuilder: (context, index) {
+                                      VideoModel video = snapshot.data![index];
+                                      return Chewie(
+                                        controller: ChewieController(
+                                          allowMuting: true,
+                                          allowFullScreen: false,
+                                          videoPlayerController:
+                                              VideoPlayerController.network(
+                                                  video.data!.max.toString()),
+                                          autoPlay: false,
+                                          looping: false,
+                                          aspectRatio: 2,
+                                          overlay: Container(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20, top: 10),
+                                              child:
+                                                  Text(video.name.toString())),
+                                          placeholder: Center(
+                                            child: Image.network(
+                                                video.preview.toString()),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
                             );
                           } else {
                             return Container();

@@ -65,7 +65,9 @@ class DetailModel {
         tags: tagsList,
         developers: developersList,
         publishers: publishersList,
-        esrb_rating: ESRB.fromMap(json['esrb_rating']),
+        esrb_rating: json['esrb_rating'] != null
+            ? ESRB.fromMap(json['esrb_rating'])
+            : null,
         platforms: platformsList);
   }
 }
