@@ -1,8 +1,25 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.practicauno.app-mergeDebugResources-31:/values-ne/values-ne.xml",
+            "outputFile": "com.example.practicauno.app-mergeDebugResources-38:/values-ne/values-ne.xml",
             "map": [
+                {
+                    "source": "C:\\Users\\agasa\\.gradle\\caches\\transforms-3\\2c79f1bef2248086e00abbcc39fc0574\\transformed\\jetified-play-services-basement-18.2.0\\res\\values-ne\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "159",
+                        "endOffsets": "354"
+                    },
+                    "to": {
+                        "startLines": "37",
+                        "startColumns": "4",
+                        "startOffsets": "3911",
+                        "endColumns": "163",
+                        "endOffsets": "4070"
+                    }
+                },
                 {
                     "source": "C:\\Users\\agasa\\.gradle\\caches\\transforms-3\\3df77d3f0e42ee5d73cdfadb8bcdc01c\\transformed\\browser-1.4.0\\res\\values-ne\\values-ne.xml",
                     "from": {
@@ -69,23 +86,6 @@
                         "startOffsets": "105,214,325,433,524,631,751,835,914,1005,1098,1193,1287,1387,1480,1575,1669,1760,1851,1937,2050,2151,2247,2360,2470,2587,2754,6334",
                         "endColumns": "108,110,107,90,106,119,83,78,90,92,94,93,99,92,94,93,90,90,85,112,100,95,112,109,116,166,110,79",
                         "endOffsets": "209,320,428,519,626,746,830,909,1000,1093,1188,1282,1382,1475,1570,1664,1755,1846,1932,2045,2146,2242,2355,2465,2582,2749,2860,6409"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\agasa\\.gradle\\caches\\transforms-3\\5eaba1f028ac62aaabee71faac8d9308\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-ne\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "159",
-                        "endOffsets": "354"
-                    },
-                    "to": {
-                        "startLines": "37",
-                        "startColumns": "4",
-                        "startOffsets": "3911",
-                        "endColumns": "163",
-                        "endOffsets": "4070"
                     }
                 },
                 {

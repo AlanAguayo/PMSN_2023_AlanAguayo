@@ -1,7 +1,16 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:practicauno/firebase/email_auth.dart';
 import 'package:practicauno/widgets/loading_modal_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
+import 'package:uni_links/uni_links.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../responsive.dart';
+
+EmailAuth emailAuth = EmailAuth();
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,6 +21,67 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
+  late StreamSubscription _subs;
+  bool loader = false;
+
+  @override
+  void initState() {
+    loader = false;
+    _initDeepLinkListener();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _disposeDeepLinkListener();
+    super.dispose();
+  }
+
+  void _initDeepLinkListener() async {
+    _subs = getLinksStream().listen((link) {
+      _checkDeepLink(link!);
+    }, cancelOnError: true);
+  }
+
+  void _checkDeepLink(String link) {
+    if (link != null) {
+      String code = link.substring(link.indexOf(RegExp('code=')) + 5);
+      emailAuth.signInWithGithub(code).then((firebaseUser) {
+        print(firebaseUser.email);
+        print(firebaseUser.photoURL);
+        print("LOGGED IN AS: ${firebaseUser.displayName}");
+      }).catchError((e) {
+        print("LOGIN ERROR: " + e.toString());
+      });
+    }
+  }
+
+  void _disposeDeepLinkListener() {
+    if (_subs != null) {
+      _subs.cancel();
+    }
+  }
+
+  void onClickGitHubLoginButton() async {
+    const String url =
+        "https://github.com/login/oauth/authorize?client_id=15b6215cdb2ddf501d02&scope=public_repo%20read:user%20user:email";
+
+    if (await canLaunch(url)) {
+      setState(() {
+        loader = true;
+      });
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+      );
+    } else {
+      setState(() {
+        loader = false;
+      });
+      print("CANNOT LAUNCH THIS URL!");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +136,23 @@ class _LoginScreenState extends State<LoginScreen> {
         });
 
     final btnGoogle = SocialLoginButton(
-        buttonType: SocialLoginButtonType.google, onPressed: () {});
+        buttonType: SocialLoginButtonType.google,
+        onPressed: () {
+          emailAuth.signInWithGoogle(context);
+          isLoading = true;
+          setState(() {});
+          Future.delayed(const Duration(milliseconds: 3000)).then((value) {
+            isLoading = false;
+            setState(() {});
+            Navigator.pushNamed(context, '/dashboard');
+          });
+        });
 
-    final btnFacebook = SocialLoginButton(
-        buttonType: SocialLoginButtonType.facebook, onPressed: () {});
+    final btnGithub = SocialLoginButton(
+        buttonType: SocialLoginButtonType.github,
+        onPressed: () {
+          onClickGitHubLoginButton();
+        });
 
     final btnRegister = TextButton(
       onPressed: () {
@@ -107,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   btnForgot: btnForgot,
                   btnLogin: btnLogin,
                   btnGoogle: btnGoogle,
-                  btnFacebook: btnFacebook),
+                  btnGithub: btnGithub),
               desktop: Row(
                 children: [
                   Expanded(
@@ -138,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               btnForgot: btnForgot,
                               btnLogin: btnLogin,
                               btnGoogle: btnGoogle,
-                              btnFacebook: btnFacebook),
+                              btnGithub: btnGithub),
                         ),
                       ],
                     ),
@@ -164,7 +247,7 @@ class MobileLoginScreen extends StatelessWidget {
     required this.btnForgot,
     required this.btnLogin,
     required this.btnGoogle,
-    required this.btnFacebook,
+    required this.btnGithub,
   });
 
   final SizedBox spaceHorizontal;
@@ -174,7 +257,7 @@ class MobileLoginScreen extends StatelessWidget {
   final TextButton btnForgot;
   final SocialLoginButton btnLogin;
   final SocialLoginButton btnGoogle;
-  final SocialLoginButton btnFacebook;
+  final SocialLoginButton btnGithub;
 
   @override
   Widget build(BuildContext context) {
@@ -194,7 +277,7 @@ class MobileLoginScreen extends StatelessWidget {
                 btnForgot: btnForgot,
                 btnLogin: btnLogin,
                 btnGoogle: btnGoogle,
-                btnFacebook: btnFacebook),
+                btnGithub: btnGithub),
           ]),
         ],
       ),
@@ -211,7 +294,7 @@ class LoginForm extends StatelessWidget {
     required this.btnForgot,
     required this.btnLogin,
     required this.btnGoogle,
-    required this.btnFacebook,
+    required this.btnGithub,
   });
 
   final TextFormField txtEmail;
@@ -220,7 +303,7 @@ class LoginForm extends StatelessWidget {
   final TextButton btnForgot;
   final SocialLoginButton btnLogin;
   final SocialLoginButton btnGoogle;
-  final SocialLoginButton btnFacebook;
+  final SocialLoginButton btnGithub;
 
   @override
   Widget build(BuildContext context) {
@@ -247,7 +330,7 @@ class LoginForm extends StatelessWidget {
         spaceHorizontal,
         btnGoogle,
         spaceHorizontal,
-        btnFacebook,
+        btnGithub,
       ],
     );
   }

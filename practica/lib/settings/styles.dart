@@ -13,7 +13,7 @@ class StylesApp {
     return ThemeData.from(
         colorScheme: const ColorScheme(
           brightness: Brightness.dark,
-          primary: Color(0xff006400),
+          primary: Color.fromARGB(255, 68, 219, 68),
           onPrimary: Colors.white,
           secondary: Color(0xff8b4513),
           onSecondary: Colors.white,
