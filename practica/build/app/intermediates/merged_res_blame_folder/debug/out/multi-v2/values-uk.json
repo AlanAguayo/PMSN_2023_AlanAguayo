@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.practicauno.app-mergeDebugResources-38:/values-uk/values-uk.xml",
+            "outputFile": "com.example.practicauno.app-mergeDebugResources-39:/values-uk/values-uk.xml",
             "map": [
                 {
                     "source": "C:\\Users\\agasa\\.gradle\\caches\\transforms-3\\f253648b0be692c533908993735bbd2e\\transformed\\jetified-play-services-base-18.0.1\\res\\values-uk\\values.xml",

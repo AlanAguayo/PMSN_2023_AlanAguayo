@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.practicauno.app-mergeDebugResources-38:/values-in/values-in.xml",
+            "outputFile": "com.example.practicauno.app-mergeDebugResources-39:/values-in/values-in.xml",
             "map": [
                 {
                     "source": "C:\\Users\\agasa\\.gradle\\caches\\transforms-3\\3df77d3f0e42ee5d73cdfadb8bcdc01c\\transformed\\browser-1.4.0\\res\\values-in\\values-in.xml",

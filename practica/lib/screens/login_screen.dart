@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:practicauno/firebase/email_auth.dart';
 import 'package:practicauno/widgets/loading_modal_widget.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -44,6 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _checkDeepLink(String link) {
+    // ignore: unnecessary_null_comparison
     if (link != null) {
       String code = link.substring(link.indexOf(RegExp('code=')) + 5);
       emailAuth.signInWithGithub(code).then((firebaseUser) {
@@ -57,6 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _disposeDeepLinkListener() {
+    // ignore: unnecessary_null_comparison
     if (_subs != null) {
       _subs.cancel();
     }
@@ -150,8 +152,29 @@ class _LoginScreenState extends State<LoginScreen> {
 
     final btnGithub = SocialLoginButton(
         buttonType: SocialLoginButtonType.github,
-        onPressed: () {
+        onPressed: () async {
           onClickGitHubLoginButton();
+        });
+
+    final btnFacebook = SocialLoginButton(
+        buttonType: SocialLoginButtonType.facebook,
+        onPressed: () async {
+          try {
+            var result = await emailAuth.signInWithFacebook();
+
+            if (result.user != null) {
+              Navigator.pushNamed(context, '/dashboard');
+            } else {
+              final snackbar = SnackBar(
+                content: const Text('Revisa los datos ingresados'),
+                action: SnackBarAction(
+                  label: 'Undo',
+                  onPressed: () {},
+                ),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackbar);
+            }
+          } catch (e) {}
         });
 
     final btnRegister = TextButton(
@@ -190,7 +213,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   btnForgot: btnForgot,
                   btnLogin: btnLogin,
                   btnGoogle: btnGoogle,
-                  btnGithub: btnGithub),
+                  btnGithub: btnGithub,
+                  btnFacebook: btnFacebook),
               desktop: Row(
                 children: [
                   Expanded(
@@ -221,7 +245,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               btnForgot: btnForgot,
                               btnLogin: btnLogin,
                               btnGoogle: btnGoogle,
-                              btnGithub: btnGithub),
+                              btnGithub: btnGithub,
+                              btnFacebook: btnFacebook),
                         ),
                       ],
                     ),
@@ -248,6 +273,7 @@ class MobileLoginScreen extends StatelessWidget {
     required this.btnLogin,
     required this.btnGoogle,
     required this.btnGithub,
+    required this.btnFacebook,
   });
 
   final SizedBox spaceHorizontal;
@@ -258,6 +284,7 @@ class MobileLoginScreen extends StatelessWidget {
   final SocialLoginButton btnLogin;
   final SocialLoginButton btnGoogle;
   final SocialLoginButton btnGithub;
+  final SocialLoginButton btnFacebook;
 
   @override
   Widget build(BuildContext context) {
@@ -277,7 +304,8 @@ class MobileLoginScreen extends StatelessWidget {
                 btnForgot: btnForgot,
                 btnLogin: btnLogin,
                 btnGoogle: btnGoogle,
-                btnGithub: btnGithub),
+                btnGithub: btnGithub,
+                btnFacebook: btnFacebook),
           ]),
         ],
       ),
@@ -286,16 +314,16 @@ class MobileLoginScreen extends StatelessWidget {
 }
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({
-    super.key,
-    required this.txtEmail,
-    required this.spaceHorizontal,
-    required this.txtPass,
-    required this.btnForgot,
-    required this.btnLogin,
-    required this.btnGoogle,
-    required this.btnGithub,
-  });
+  const LoginForm(
+      {super.key,
+      required this.txtEmail,
+      required this.spaceHorizontal,
+      required this.txtPass,
+      required this.btnForgot,
+      required this.btnLogin,
+      required this.btnGoogle,
+      required this.btnGithub,
+      required this.btnFacebook});
 
   final TextFormField txtEmail;
   final SizedBox spaceHorizontal;
@@ -304,6 +332,7 @@ class LoginForm extends StatelessWidget {
   final SocialLoginButton btnLogin;
   final SocialLoginButton btnGoogle;
   final SocialLoginButton btnGithub;
+  final SocialLoginButton btnFacebook;
 
   @override
   Widget build(BuildContext context) {
@@ -331,6 +360,8 @@ class LoginForm extends StatelessWidget {
         btnGoogle,
         spaceHorizontal,
         btnGithub,
+        spaceHorizontal,
+        btnFacebook
       ],
     );
   }

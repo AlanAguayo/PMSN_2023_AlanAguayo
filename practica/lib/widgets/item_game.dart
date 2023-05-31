@@ -68,6 +68,7 @@ class ItemGame extends StatelessWidget {
               fit: BoxFit.fill,
               image: NetworkImage(gamesModel.background_image.toString() !=
                           'null' ||
+                      // ignore: unnecessary_null_comparison
                       gamesModel.background_image.toString() == null
                   ? gamesModel.background_image.toString()
                   : 'https://imgs.search.brave.com/oklXnQr3XKmAt4D5nMVW-iChIPkHYc_GwB3R8JSRei4/rs:fit:720:717:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vNzM2/eC8yYi8wNC8zZi8y/YjA0M2Y1ZTcwMjE3/MzQyOTFmNGJhNTc4/ZTgzOWUxYS5qcGc'),

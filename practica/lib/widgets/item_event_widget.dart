@@ -132,8 +132,8 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
           actions: [
             TextButton(
               onPressed: () {
-                _database.ELIMINAR(
-                    'tblEvent', widget.eventModel!.idEvento!, 'idEvento');
+                _database.ELIMINAR('tblEvent',
+                    widget.eventModel!.idEvento!.toString(), 'idEvento');
                 Navigator.pop(context);
                 flags!.setUpdate();
               },

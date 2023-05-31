@@ -55,7 +55,7 @@ class DatabaseHelper {
         .update(table, map, where: '$id = ?', whereArgs: [map[id]]);
   }
 
-  Future<int> ELIMINAR(String table, int id, String idR) async {
+  Future<int> ELIMINAR(String table, String id, String idR) async {
     var conexion = await database;
     return await conexion.delete(table, where: '$idR = ?', whereArgs: [id]);
   }

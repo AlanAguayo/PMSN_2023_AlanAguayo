@@ -52,7 +52,8 @@ class _MovieDetailState extends State<MovieDetail> {
                         );
                       } else {
                         helper
-                            .ELIMINAR('tblPopular', widget.model.id!, 'id')
+                            .ELIMINAR(
+                                'tblPopular', widget.model.id!.toString(), 'id')
                             .then(
                           (value) {
                             flag.setUpdate();

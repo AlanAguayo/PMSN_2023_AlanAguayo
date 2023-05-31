@@ -12,13 +12,13 @@ class PostCollection {
 
   Future<void> insertPost(PostModel postModel) async {
     return _postCollection!.doc().set(
-      {'dscPost': postModel.dscPost, 'datePost': postModel.dateEvento},
+      {'dscPost': postModel.dscPost, 'datePost': postModel.datePost},
     );
   }
 
   Future<void> updatePost(PostModel postModel, String id) async {
     return _postCollection!.doc(id).update(
-      {'dscPost': postModel.dscPost, 'datePost': postModel.dateEvento},
+      {'dscPost': postModel.dscPost, 'datePost': postModel.datePost},
     );
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:practicauno/database/database_helper.dart';
 import 'package:provider/provider.dart';
 
+import '../firebase/post_collection.dart';
 import '../models/post_model.dart';
 import '../provider/flags_provider.dart';
 import 'future_modal.dart';
@@ -16,9 +17,16 @@ class ItemPostWidget extends StatefulWidget {
 }
 
 class _ItemPostWidgetState extends State<ItemPostWidget> {
+  // ignore: unused_field
   final DatabaseHelper _database = DatabaseHelper();
-
+  PostCollection? postCollection = PostCollection();
   FlagsProvider? flags;
+
+  @override
+  void initState() {
+    super.initState();
+    postCollection = PostCollection();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,8 +150,9 @@ class _ItemPostWidgetState extends State<ItemPostWidget> {
           actions: [
             TextButton(
               onPressed: () {
-                _database.ELIMINAR(
-                    'tblPost', widget.postModel!.idPost!, 'idPost');
+                postCollection!.deletePost(widget.postModel!.idPost!);
+                /* _database.ELIMINAR(
+                    'tblPost', widget.postModel!.idPost!, 'idPost');*/
                 Navigator.pop(context);
                 flags!.setUpdate();
               },

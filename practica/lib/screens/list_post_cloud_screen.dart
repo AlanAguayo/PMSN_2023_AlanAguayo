@@ -30,11 +30,14 @@ class _ListPostCloudScreenState extends State<ListPostCloudScreen> {
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
+                final idPost = snapshot.data!.docs[index].id;
                 final dscPost = snapshot.data!.docs[index].get('dscPost');
                 final datePost = snapshot.data!.docs[index].get('datePost');
                 return ItemPostWidget(
                   postModel: PostModel(
-                      dscPost: dscPost, datePost: datePost.toString()),
+                      idPost: idPost,
+                      dscPost: dscPost,
+                      datePost: datePost.toString()),
                 );
               },
             );

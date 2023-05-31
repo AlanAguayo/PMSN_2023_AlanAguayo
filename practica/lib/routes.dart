@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practicauno/screens/about_us_screen.dart';
 import 'package:practicauno/screens/account_screen.dart';
 import 'package:practicauno/screens/dashboard_screen.dart';
 import 'package:practicauno/screens/event_screen.dart';
@@ -17,5 +18,6 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     "/popular": (BuildContext context) => const PopularMoviesScreen(),
     "/games": (BuildContext context) => const GamesScreen(),
     "/account": (BuildContext context) => const AccountScreen(),
+    "/about": (BuildContext context) => const AboutUsScreen(),
   };
 }

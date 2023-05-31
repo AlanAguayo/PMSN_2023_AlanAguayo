@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.practicauno.app-mergeDebugResources-38:/values-zh-rTW/values-zh-rTW.xml",
+            "outputFile": "com.example.practicauno.app-mergeDebugResources-39:/values-zh-rTW/values-zh-rTW.xml",
             "map": [
                 {
                     "source": "C:\\Users\\agasa\\.gradle\\caches\\transforms-3\\056e32e6863544fe71e28f568f0e5534\\transformed\\jetified-facebook-login-15.0.2\\res\\values-zh-rTW\\values-zh-rTW.xml",

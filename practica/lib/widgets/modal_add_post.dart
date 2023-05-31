@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../database/database_helper.dart';
+import '../firebase/post_collection.dart';
 import '../models/post_model.dart';
 import '../provider/flags_provider.dart';
 
@@ -15,6 +16,7 @@ class ModalAddPost extends StatefulWidget {
 }
 
 class _ModalAddPostState extends State<ModalAddPost> {
+  PostCollection? postCollection;
   DatabaseHelper? database;
   TextEditingController txtDescPost = TextEditingController();
 
@@ -22,6 +24,7 @@ class _ModalAddPostState extends State<ModalAddPost> {
   void initState() {
     super.initState();
     database = DatabaseHelper();
+    postCollection = PostCollection();
     txtDescPost.text =
         widget.postModel != null ? widget.postModel!.dscPost! : "";
   }
@@ -46,7 +49,22 @@ class _ModalAddPostState extends State<ModalAddPost> {
               IconButton(
                 onPressed: () {
                   if (widget.postModel == null) {
-                    database!.INSERTAR("tblPost", {
+                    postCollection!
+                        .insertPost(
+                      PostModel(
+                        dscPost: txtDescPost.text,
+                        datePost: DateTime.now().toString(),
+                      ),
+                    )
+                        .then((value) {
+                      var msg = 'Publicacion insertado!';
+                      final snackBar = SnackBar(content: Text(msg));
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      flags.setUpdate();
+                    });
+
+                    /*database!.INSERTAR("tblPost", {
                       'dscPost': txtDescPost.text,
                       'datePost': DateTime.now().toString(),
                     }).then((value) {
@@ -57,9 +75,24 @@ class _ModalAddPostState extends State<ModalAddPost> {
                       Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       flags.setUpdate();
-                    });
+                    });*/
                   } else {
-                    database!
+                    postCollection!
+                        .updatePost(
+                      PostModel(
+                        dscPost: txtDescPost.text,
+                        datePost: DateTime.now().toString(),
+                      ),
+                      widget.postModel!.idPost.toString(),
+                    )
+                        .then((value) {
+                      var msg = 'Publicacion insertado!';
+                      final snackBar = SnackBar(content: Text(msg));
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      flags.setUpdate();
+                    });
+                    /*database!
                         .ACTUALIZAR(
                             "tblPost",
                             {
@@ -76,7 +109,7 @@ class _ModalAddPostState extends State<ModalAddPost> {
                       Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       flags.setUpdate();
-                    });
+                    });*/
                   }
                 },
                 icon: const Icon(Icons.add),

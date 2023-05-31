@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.practicauno.app-mergeDebugResources-38:/values-my/values-my.xml",
+            "outputFile": "com.example.practicauno.app-mergeDebugResources-39:/values-my/values-my.xml",
             "map": [
                 {
                     "source": "C:\\Users\\agasa\\.gradle\\caches\\transforms-3\\0167bec32a3e060ef621c334667072b8\\transformed\\jetified-exoplayer-core-2.18.5\\res\\values-my\\values-my.xml",

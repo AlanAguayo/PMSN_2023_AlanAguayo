@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.practicauno.app-mergeDebugResources-38:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "com.example.practicauno.app-mergeDebugResources-39:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
                     "source": "C:\\Users\\agasa\\.gradle\\caches\\transforms-3\\08a71c84c177d944c3ca1ffed95eb09f\\transformed\\core-1.8.0\\res\\values-en-rXC\\values-en-rXC.xml",

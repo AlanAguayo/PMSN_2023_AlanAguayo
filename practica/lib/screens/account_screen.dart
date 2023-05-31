@@ -12,10 +12,11 @@ class AccountScreen extends StatefulWidget {
 
 class _AccountScreenState extends State<AccountScreen> {
   EmailAuth emailAuth = EmailAuth();
-
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
+    print('fotolink: ${user.photoURL}');
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Perfil'),
@@ -26,8 +27,8 @@ class _AccountScreenState extends State<AccountScreen> {
               'Logout',
               style: TextStyle(color: Color.fromARGB(255, 94, 94, 94)),
             ),
-            onPressed: () {
-              emailAuth.signOut(context);
+            onPressed: () async {
+              await emailAuth.signOut(context);
               Navigator.pushNamed(context, '/login');
             },
           ),

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.practicauno.app-mergeDebugResources-38:/values-v23/values-v23.xml",
+            "outputFile": "com.example.practicauno.app-mergeDebugResources-39:/values-v23/values-v23.xml",
             "map": [
                 {
                     "source": "C:\\Users\\agasa\\.gradle\\caches\\transforms-3\\ae43efc68bc8e0674a9ac80cc9a0aeab\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",

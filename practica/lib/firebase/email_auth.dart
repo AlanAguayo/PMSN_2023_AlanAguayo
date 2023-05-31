@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import '../models/github_login_request.dart';
 import '../models/github_login_response.dart';
@@ -60,6 +59,7 @@ class EmailAuth {
             idToken: googleAuth?.idToken,
           );
 
+          // ignore: unused_local_variable
           UserCredential userCredential =
               await emailAuth.signInWithCredential(credential);
         }
@@ -92,23 +92,21 @@ class EmailAuth {
     return user;
   }
 
-  Future<void> signInWithFacebook(BuildContext context) async {
-    try {
-      final facebookLoginResult = await FacebookAuth.instance.login();
-      final userData = await FacebookAuth.instance.getUserData();
+  Future<UserCredential> signInWithFacebook() async {
+    final LoginResult loginResult = await FacebookAuth.instance.login(
+      permissions: ['email', 'public_profile'],
+    );
 
-      final facebookAuthCredential = await FacebookAuthProvider.credential(
-          facebookLoginResult.accessToken!.token);
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
-      await emailAuth.signInWithCredential(facebookAuthCredential);
+    var userData = await FacebookAuth.instance.getUserData();
 
-      await FirebaseFirestore.instance.collection('users').add({
-        'email': userData['email'],
-        'imageUrl': userData['picture']['data']['url'],
-        'name': userData['name'],
-      });
-    } on FirebaseAuthException {
-    } catch (e) {}
+    var email = userData["email"];
+    print(email);
+
+    // Once signed in, return the UserCredential
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 
   Future<void> signOut(BuildContext context) async {

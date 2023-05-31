@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.practicauno.app-mergeDebugResources-38:/values-pt-rPT/values-pt-rPT.xml",
+            "outputFile": "com.example.practicauno.app-mergeDebugResources-39:/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
                     "source": "C:\\Users\\agasa\\.gradle\\caches\\transforms-3\\0167bec32a3e060ef621c334667072b8\\transformed\\jetified-exoplayer-core-2.18.5\\res\\values-pt-rPT\\values-pt-rPT.xml",
